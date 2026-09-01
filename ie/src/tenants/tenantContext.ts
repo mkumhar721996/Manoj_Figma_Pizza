@@ -5,7 +5,17 @@ export interface TenantContextPayload {
   agentIds: string[];
 }
 
-const SECRET = process.env.IE_TENANT_CONTEXT_SECRET ?? "ie-tenant-context-dev-secret";
+const SECRET = requireSecret();
+
+function requireSecret(): string {
+  const value = process.env.IE_TENANT_CONTEXT_SECRET;
+  if (!value) {
+    throw new Error(
+      "IE_TENANT_CONTEXT_SECRET environment variable must be set; refusing to start with no tenant context signing secret configured.",
+    );
+  }
+  return value;
+}
 
 export function issueContext(payload: TenantContextPayload): string {
   const encoded = Buffer.from(JSON.stringify(payload), "utf8").toString("base64url");
