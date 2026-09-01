@@ -1,0 +1,10 @@
+{
+  "name": "ie",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "IE tenant-context API for Composer routing (no external runtime dependencies; uses Node.js built-ins only).",
+  "scripts": {
+    "test": "node --test test/"
+  }
+}
