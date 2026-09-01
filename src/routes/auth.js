@@ -7,11 +7,11 @@ const { safeEqual } = require('../utils/safeEqual');
 const SESSION_COOKIE = 'sid';
 
 function sessionCookieHeader(sessionId) {
-  return `${SESSION_COOKIE}=${sessionId}; HttpOnly; Path=/`;
+  return `${SESSION_COOKIE}=${sessionId}; HttpOnly; Secure; SameSite=Strict; Path=/`;
 }
 
 function clearSessionCookieHeader() {
-  return `${SESSION_COOKIE}=; HttpOnly; Path=/; Max-Age=0`;
+  return `${SESSION_COOKIE}=; HttpOnly; Secure; SameSite=Strict; Path=/; Max-Age=0`;
 }
 
 async function handleGetLogin(req, res) {
