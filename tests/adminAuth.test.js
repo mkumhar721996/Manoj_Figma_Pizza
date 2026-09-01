@@ -19,7 +19,7 @@ test('AC1: unauthenticated user is redirected to login', async (t) => {
 test('AC2: correct credentials grant access to the admin panel', async (t) => {
   const server = await startTestServer();
   t.after(() => server.close());
-  const { username, password } = getCredentials();
+  const [username, password] = getCredentials();
 
   const loginResponse = await fetch(`${server.baseUrl}/admin/login`, {
     method: 'POST',
@@ -62,7 +62,7 @@ test('AC3: incorrect credentials show an error and deny access', async (t) => {
 test('AC4: logout ends the session and returns to the login page', async (t) => {
   const server = await startTestServer();
   t.after(() => server.close());
-  const { username, password } = getCredentials();
+  const [username, password] = getCredentials();
 
   const loginResponse = await fetch(`${server.baseUrl}/admin/login`, {
     method: 'POST',
@@ -91,7 +91,7 @@ test('AC4: logout ends the session and returns to the login page', async (t) => 
 test('AC5: authenticated session persists without re-prompting for login', async (t) => {
   const server = await startTestServer();
   t.after(() => server.close());
-  const { username, password } = getCredentials();
+  const [username, password] = getCredentials();
 
   const loginResponse = await fetch(`${server.baseUrl}/admin/login`, {
     method: 'POST',

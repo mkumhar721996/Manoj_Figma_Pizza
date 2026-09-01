@@ -21,7 +21,7 @@ async function handleGetLogin(req, res) {
 
 async function handlePostLogin(req, res) {
   const body = await parseUrlEncodedBody(req);
-  const { username, password } = getCredentials();
+  const [username, password] = getCredentials();
   if (safeEqual(body.username, username) && safeEqual(body.password, password)) {
     const { id, data } = createSession();
     data.isAdmin = true;

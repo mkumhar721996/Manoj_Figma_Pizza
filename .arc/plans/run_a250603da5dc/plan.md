@@ -58,7 +58,7 @@ No routes yet — this just makes the app importable by tests.
 - Follow-up `GET /admin` using the returned cookie → expect `200`.
 
 **Minimal code to pass:**
-- `src/config/credentials.js`: exports `{ username: process.env.ADMIN_USERNAME, password: process.env.ADMIN_PASSWORD }`.
+- `src/config/credentials.js`: reads `ADMIN_USERNAME`/`ADMIN_PASSWORD` from env and returns them as a `[username, password]` tuple.
 - `src/routes/auth.js`: `POST /admin/login` handler compares `req.body.username`/`req.body.password`
   against the config; on match, sets `req.session.isAdmin = true` and redirects to `/admin`.
 - Add `GET /admin/login` handler rendering the login form (`src/views/loginPage.js`) with no error.
