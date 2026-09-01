@@ -23,24 +23,32 @@ async function lookupAndRender(orderNumber, el) {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  const resultEl = document.getElementById('status-result');
+function wireUpPage(doc, win) {
+  const resultEl = doc.getElementById('status-result');
   if (!resultEl) return;
 
-  const params = new URLSearchParams(window.location.search);
+  const params = new URLSearchParams(win.location.search);
   const orderNumberFromQuery = params.get('orderNumber');
   if (orderNumberFromQuery) {
     lookupAndRender(orderNumberFromQuery, resultEl);
   }
 
-  const form = document.getElementById('order-status-form');
+  const form = doc.getElementById('order-status-form');
   if (form) {
     form.addEventListener('submit', (event) => {
       event.preventDefault();
-      const orderNumber = document.getElementById('order-number-input').value.trim();
+      const orderNumber = doc.getElementById('order-number-input').value.trim();
       if (orderNumber) {
         lookupAndRender(orderNumber, resultEl);
       }
     });
   }
-});
+}
+
+if (typeof document !== 'undefined') {
+  document.addEventListener('DOMContentLoaded', () => wireUpPage(document, window));
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { fetchOrderStatus, renderStatus, renderError, lookupAndRender, wireUpPage };
+}
