@@ -2,6 +2,7 @@ const { getCredentials } = require('../config/credentials');
 const { createSession, destroySession } = require('../session');
 const { parseUrlEncodedBody } = require('../utils/body');
 const { loginPage } = require('../views/loginPage');
+const { safeEqual } = require('../utils/safeEqual');
 
 const SESSION_COOKIE = 'sid';
 
@@ -21,7 +22,7 @@ async function handleGetLogin(req, res) {
 async function handlePostLogin(req, res) {
   const body = await parseUrlEncodedBody(req);
   const { username, password } = getCredentials();
-  if (body.username === username && body.password === password) {
+  if (safeEqual(body.username, username) && safeEqual(body.password, password)) {
     const { id, data } = createSession();
     data.isAdmin = true;
     res.writeHead(302, { Location: '/admin', 'Set-Cookie': sessionCookieHeader(id) });
