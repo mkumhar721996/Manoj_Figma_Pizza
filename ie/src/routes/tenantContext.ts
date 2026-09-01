@@ -4,8 +4,8 @@ import { issueContext } from "../tenants/tenantContext.ts";
 
 export function tenantContextHandler(registry: TenantRegistry): Handler {
   return (ctx) => {
-    const apiKey = ctx.authorizationBearerToken();
-    const tenant = apiKey ? registry.findByApiKey(apiKey) : null;
+    const presentedCredential = ctx.authorizationBearerToken();
+    const tenant = presentedCredential ? registry.findByApiKey(presentedCredential) : null;
 
     if (!tenant) {
       ctx.json(401, { error: "invalid_credentials" });
