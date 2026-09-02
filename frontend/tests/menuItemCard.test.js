@@ -56,3 +56,34 @@ test('side/drink item shows a single price and no size labels', () => {
   assert.doesNotMatch(html, /Medium/);
   assert.doesNotMatch(html, /Large/);
 });
+
+test('renders without crashing when a pizza is missing a size price, showing only the available sizes', () => {
+  const incompletePizza = {
+    ...samplePizza,
+    sizePrices: { small: 8.99, large: 14.99 },
+  };
+
+  const html = renderMenuItemCard(incompletePizza);
+
+  assert.match(html, /Small/);
+  assert.match(html, /\$8\.99/);
+  assert.doesNotMatch(html, /Medium/);
+  assert.match(html, /Large/);
+  assert.match(html, /\$14\.99/);
+});
+
+test('does not render an <img> tag when photoUrl uses an unsafe scheme', () => {
+  const unsafeItem = {
+    ...sampleDrink,
+    photoUrl: 'javascript:alert(document.cookie)',
+  };
+
+  const html = renderMenuItemCard(unsafeItem);
+
+  assert.doesNotMatch(html, /<img/);
+});
+
+test('renders an <img> tag when photoUrl is a safe https URL', () => {
+  const html = renderMenuItemCard(sampleDrink);
+  assert.match(html, /<img/);
+});

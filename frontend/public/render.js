@@ -33,11 +33,28 @@ export function groupByCategory(items) {
 }
 
 function renderSizePriceList(sizePrices) {
-  const rows = SIZE_LABELS.map(
-    ([key, label]) =>
-      `<div class="size-price-row"><span class="size-label">${label}</span><span class="size-price">${formatPrice(sizePrices[key])}</span></div>`
-  ).join('');
+  const rows = SIZE_LABELS.filter(([key]) => sizePrices[key] !== undefined)
+    .map(
+      ([key, label]) =>
+        `<div class="size-price-row"><span class="size-label">${label}</span><span class="size-price">${formatPrice(sizePrices[key])}</span></div>`
+    )
+    .join('');
   return `<div class="size-price-list">${rows}</div>`;
+}
+
+export function isSafeImageUrl(url) {
+  try {
+    return ['http:', 'https:'].includes(new URL(url).protocol);
+  } catch {
+    return false;
+  }
+}
+
+function renderPhoto(item) {
+  if (!isSafeImageUrl(item.photoUrl)) {
+    return '';
+  }
+  return `<img class="menu-item-photo" src="${escapeHtml(item.photoUrl)}" alt="${escapeHtml(item.name)}" />`;
 }
 
 export function renderMenuItemCard(item) {
@@ -47,7 +64,7 @@ export function renderMenuItemCard(item) {
       : `<div class="menu-item-price">${formatPrice(item.price)}</div>`;
 
   return `<article class="menu-item-card">
-    <img class="menu-item-photo" src="${escapeHtml(item.photoUrl)}" alt="${escapeHtml(item.name)}" />
+    ${renderPhoto(item)}
     <h3 class="menu-item-name">${escapeHtml(item.name)}</h3>
     <p class="menu-item-description">${escapeHtml(item.description)}</p>
     ${priceMarkup}
@@ -60,6 +77,10 @@ export function renderCategorySection(category, items) {
     <h2 class="category-heading">${escapeHtml(category)}</h2>
     <div class="menu-item-list">${cards}</div>
   </section>`;
+}
+
+export function renderErrorState(message = 'Menu unavailable, please try again.') {
+  return `<div class="menu-error">${escapeHtml(message)}</div>`;
 }
 
 export function renderMenuPage(items) {
