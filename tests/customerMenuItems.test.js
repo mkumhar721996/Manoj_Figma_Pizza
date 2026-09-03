@@ -1,12 +1,12 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { startTestServer } = require('./helpers/testServer');
+const { startTestServer, adminHeaders } = require('./helpers/testServer');
 const repository = require('../src/repositories/menuItemRepository');
 
 async function createAsAdmin(baseUrl, body) {
   const response = await fetch(`${baseUrl}/api/admin/menu-items`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'x-role': 'admin' },
+    headers: { 'Content-Type': 'application/json', ...adminHeaders() },
     body: JSON.stringify(body),
   });
   return response.json();
@@ -41,7 +41,7 @@ test('customer menu items', async (t) => {
 
     await fetch(`${baseUrl}/api/admin/menu-items/${created.id}`, {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json', 'x-role': 'admin' },
+      headers: { 'Content-Type': 'application/json', ...adminHeaders() },
       body: JSON.stringify({
         name: 'Margherita Deluxe',
         description: 'Extra mozzarella and basil',
@@ -63,7 +63,7 @@ test('customer menu items', async (t) => {
 
     await fetch(`${baseUrl}/api/admin/menu-items/${created.id}/toggle`, {
       method: 'PATCH',
-      headers: { 'x-role': 'admin' },
+      headers: adminHeaders(),
     });
 
     const response = await fetch(`${baseUrl}/api/menu-items`);
@@ -85,7 +85,7 @@ test('customer menu items', async (t) => {
 
     await fetch(`${baseUrl}/api/admin/menu-items/${created.id}/toggle`, {
       method: 'PATCH',
-      headers: { 'x-role': 'admin' },
+      headers: adminHeaders(),
     });
 
     const afterToggle = await fetch(`${baseUrl}/api/menu-items`);

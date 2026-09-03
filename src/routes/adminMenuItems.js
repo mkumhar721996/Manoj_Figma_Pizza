@@ -19,7 +19,8 @@ function createMenuItem(body) {
 }
 
 function updateMenuItem(id, body) {
-  const updated = repository.update(id, body);
+  const { name, description, price, category } = body;
+  const updated = repository.update(id, { name, description, price, category });
   if (!updated) {
     throw httpError(404, `Menu item ${id} not found`);
   }

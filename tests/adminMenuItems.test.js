@@ -1,6 +1,6 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { startTestServer } = require('./helpers/testServer');
+const { startTestServer, adminHeaders } = require('./helpers/testServer');
 const repository = require('../src/repositories/menuItemRepository');
 
 test('admin menu items', async (t) => {
@@ -11,7 +11,7 @@ test('admin menu items', async (t) => {
   await t.test('AC1: adding a new item makes it appear in the admin menu list', async () => {
     const createResponse = await fetch(`${baseUrl}/api/admin/menu-items`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'x-role': 'admin' },
+      headers: { 'Content-Type': 'application/json', ...adminHeaders() },
       body: JSON.stringify({
         name: 'Margherita',
         description: 'Classic tomato and mozzarella',
@@ -25,7 +25,7 @@ test('admin menu items', async (t) => {
     assert.ok(created.id);
 
     const listResponse = await fetch(`${baseUrl}/api/admin/menu-items`, {
-      headers: { 'x-role': 'admin' },
+      headers: adminHeaders(),
     });
     assert.equal(listResponse.status, 200);
     const list = await listResponse.json();
@@ -35,7 +35,7 @@ test('admin menu items', async (t) => {
   await t.test('AC3: editing an item updates the admin menu list', async () => {
     const createResponse = await fetch(`${baseUrl}/api/admin/menu-items`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'x-role': 'admin' },
+      headers: { 'Content-Type': 'application/json', ...adminHeaders() },
       body: JSON.stringify({
         name: 'Margherita',
         description: 'Classic tomato and mozzarella',
@@ -47,7 +47,7 @@ test('admin menu items', async (t) => {
 
     const updateResponse = await fetch(`${baseUrl}/api/admin/menu-items/${created.id}`, {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json', 'x-role': 'admin' },
+      headers: { 'Content-Type': 'application/json', ...adminHeaders() },
       body: JSON.stringify({
         name: 'Margherita Deluxe',
         description: 'Extra mozzarella and basil',
@@ -61,7 +61,7 @@ test('admin menu items', async (t) => {
     assert.equal(updated.price, 12.49);
 
     const listResponse = await fetch(`${baseUrl}/api/admin/menu-items`, {
-      headers: { 'x-role': 'admin' },
+      headers: adminHeaders(),
     });
     const list = await listResponse.json();
     const found = list.find((item) => item.id === created.id);
@@ -69,10 +69,42 @@ test('admin menu items', async (t) => {
     assert.equal(found.price, 12.49);
   });
 
+  await t.test('AC3: editing an item cannot overwrite its id or active state', async () => {
+    const createResponse = await fetch(`${baseUrl}/api/admin/menu-items`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', ...adminHeaders() },
+      body: JSON.stringify({ name: 'Margherita', price: 9.99, category: 'pizza' }),
+    });
+    const created = await createResponse.json();
+
+    const updateResponse = await fetch(`${baseUrl}/api/admin/menu-items/${created.id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json', ...adminHeaders() },
+      body: JSON.stringify({
+        id: 'spoofed-id',
+        active: false,
+        name: 'Margherita Deluxe',
+        price: 12.49,
+        category: 'pizza',
+      }),
+    });
+    assert.equal(updateResponse.status, 200);
+    const updated = await updateResponse.json();
+    assert.equal(updated.id, created.id);
+    assert.equal(updated.active, true);
+
+    const listResponse = await fetch(`${baseUrl}/api/admin/menu-items`, {
+      headers: adminHeaders(),
+    });
+    const list = await listResponse.json();
+    assert.ok(list.some((item) => item.id === created.id));
+    assert.ok(!list.some((item) => item.id === 'spoofed-id'));
+  });
+
   await t.test('AC5: toggling an active item off sets it inactive', async () => {
     const createResponse = await fetch(`${baseUrl}/api/admin/menu-items`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'x-role': 'admin' },
+      headers: { 'Content-Type': 'application/json', ...adminHeaders() },
       body: JSON.stringify({ name: 'Pepperoni', price: 11.5, category: 'pizza' }),
     });
     const created = await createResponse.json();
@@ -80,7 +112,7 @@ test('admin menu items', async (t) => {
 
     const toggleResponse = await fetch(`${baseUrl}/api/admin/menu-items/${created.id}/toggle`, {
       method: 'PATCH',
-      headers: { 'x-role': 'admin' },
+      headers: adminHeaders(),
     });
     assert.equal(toggleResponse.status, 200);
     const toggled = await toggleResponse.json();
@@ -90,7 +122,7 @@ test('admin menu items', async (t) => {
   await t.test('AC6: toggling an inactive item on sets it active', async () => {
     const createResponse = await fetch(`${baseUrl}/api/admin/menu-items`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'x-role': 'admin' },
+      headers: { 'Content-Type': 'application/json', ...adminHeaders() },
       body: JSON.stringify({ name: 'Seasonal Special', price: 14, category: 'pizza', active: false }),
     });
     const created = await createResponse.json();
@@ -98,7 +130,7 @@ test('admin menu items', async (t) => {
 
     const toggleResponse = await fetch(`${baseUrl}/api/admin/menu-items/${created.id}/toggle`, {
       method: 'PATCH',
-      headers: { 'x-role': 'admin' },
+      headers: adminHeaders(),
     });
     assert.equal(toggleResponse.status, 200);
     const toggled = await toggleResponse.json();

@@ -1,5 +1,8 @@
 const { createApp } = require('../../src/app');
 
+const ADMIN_TOKEN = 'test-admin-token';
+process.env.ADMIN_API_TOKEN = ADMIN_TOKEN;
+
 function startTestServer() {
   const server = createApp();
   return new Promise((resolve) => {
@@ -10,4 +13,8 @@ function startTestServer() {
   });
 }
 
-module.exports = { startTestServer };
+function adminHeaders(extra = {}) {
+  return { Authorization: `Bearer ${ADMIN_TOKEN}`, ...extra };
+}
+
+module.exports = { startTestServer, adminHeaders, ADMIN_TOKEN };

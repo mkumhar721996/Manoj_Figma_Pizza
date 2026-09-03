@@ -1,6 +1,6 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { startTestServer } = require('./helpers/testServer');
+const { startTestServer, adminHeaders } = require('./helpers/testServer');
 const repository = require('../src/repositories/menuItemRepository');
 
 test('authorization', async (t) => {
@@ -11,12 +11,18 @@ test('authorization', async (t) => {
   await t.test('AC7: a non-admin cannot add, edit, or toggle a menu item', async () => {
     const createResponse = await fetch(`${baseUrl}/api/admin/menu-items`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'x-role': 'admin' },
+      headers: { 'Content-Type': 'application/json', ...adminHeaders() },
       body: JSON.stringify({ name: 'Margherita', price: 9.99, category: 'pizza' }),
     });
     const created = await createResponse.json();
 
-    const nonAdminHeaderSets = [{}, { 'x-role': 'customer' }];
+    const nonAdminHeaderSets = [
+      {},
+      { 'x-role': 'customer' },
+      // Self-declared role headers must never be trusted as proof of admin identity.
+      { 'x-role': 'admin' },
+      { Authorization: 'Bearer wrong-token' },
+    ];
 
     for (const headers of nonAdminHeaderSets) {
       const addResponse = await fetch(`${baseUrl}/api/admin/menu-items`, {
@@ -41,7 +47,7 @@ test('authorization', async (t) => {
     }
 
     const listResponse = await fetch(`${baseUrl}/api/admin/menu-items`, {
-      headers: { 'x-role': 'admin' },
+      headers: adminHeaders(),
     });
     const list = await listResponse.json();
     assert.equal(list.length, 1);
