@@ -18,9 +18,16 @@ function createMenuItem(body) {
   return repository.create({ name, description, price, category, active });
 }
 
+const EDITABLE_FIELDS = ['name', 'description', 'price', 'category'];
+
 function updateMenuItem(id, body) {
-  const { name, description, price, category } = body;
-  const updated = repository.update(id, { name, description, price, category });
+  const patch = {};
+  for (const field of EDITABLE_FIELDS) {
+    if (body[field] !== undefined) {
+      patch[field] = body[field];
+    }
+  }
+  const updated = repository.update(id, patch);
   if (!updated) {
     throw httpError(404, `Menu item ${id} not found`);
   }

@@ -101,6 +101,32 @@ test('admin menu items', async (t) => {
     assert.ok(!list.some((item) => item.id === 'spoofed-id'));
   });
 
+  await t.test('AC3: a partial edit does not wipe out unspecified fields', async () => {
+    const createResponse = await fetch(`${baseUrl}/api/admin/menu-items`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', ...adminHeaders() },
+      body: JSON.stringify({
+        name: 'Margherita',
+        description: 'Classic tomato and mozzarella',
+        price: 9.99,
+        category: 'pizza',
+      }),
+    });
+    const created = await createResponse.json();
+
+    const updateResponse = await fetch(`${baseUrl}/api/admin/menu-items/${created.id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json', ...adminHeaders() },
+      body: JSON.stringify({ name: 'Margherita Deluxe' }),
+    });
+    assert.equal(updateResponse.status, 200);
+    const updated = await updateResponse.json();
+    assert.equal(updated.name, 'Margherita Deluxe');
+    assert.equal(updated.description, 'Classic tomato and mozzarella');
+    assert.equal(updated.price, 9.99);
+    assert.equal(updated.category, 'pizza');
+  });
+
   await t.test('AC5: toggling an active item off sets it inactive', async () => {
     const createResponse = await fetch(`${baseUrl}/api/admin/menu-items`, {
       method: 'POST',
