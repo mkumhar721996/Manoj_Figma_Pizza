@@ -1,0 +1,11 @@
+{
+  "name": "manoj-figma-pizza",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Admin menu management API for the Figma Pizza project",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test tests/"
+  }
+}
