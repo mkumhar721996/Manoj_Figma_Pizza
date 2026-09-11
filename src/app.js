@@ -16,7 +16,14 @@ function createApp() {
     }
 
     if (req.method === "POST" && url.pathname === "/login") {
-      const body = await parseBody(req);
+      let body;
+      try {
+        body = await parseBody(req);
+      } catch (err) {
+        res.writeHead(err.status || 400, { "Content-Type": "text/plain" });
+        res.end("Bad Request");
+        return;
+      }
       handleLoginSubmit(req, res, body);
       return;
     }

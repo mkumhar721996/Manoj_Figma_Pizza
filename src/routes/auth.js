@@ -1,23 +1,25 @@
 const { verifyCredentials } = require("../services/authService");
 const { createSession, buildSessionCookie } = require("../session");
+const { escapeHtml } = require("../lib/html");
+const logger = require("../lib/logger");
 
 const DEFAULT_DESTINATION = "/dashboard";
 const GENERIC_ERROR = "Invalid email or password.";
 
-// Only allow redirecting to a same-origin absolute path to prevent open redirects.
+// Only allow redirecting to a same-origin absolute path to prevent open
+// redirects (blocks `//` and `/\`, both of which browsers can normalize to a
+// protocol-relative URL) and header injection via embedded CR/LF characters.
 function sanitizeDestination(destination) {
-  if (typeof destination === "string" && destination.startsWith("/") && !destination.startsWith("//")) {
+  if (
+    typeof destination === "string" &&
+    destination.startsWith("/") &&
+    !destination.startsWith("//") &&
+    !destination.startsWith("/\\") &&
+    !/[\r\n]/.test(destination)
+  ) {
     return destination;
   }
   return DEFAULT_DESTINATION;
-}
-
-function escapeHtml(value) {
-  return String(value)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
 }
 
 function renderLoginPage(res, { status = 200, redirect = "", error = "" } = {}) {
@@ -26,9 +28,12 @@ function renderLoginPage(res, { status = 200, redirect = "", error = "" } = {}) 
 <form method="POST" action="/login">
   ${error ? `<p class="error">${escapeHtml(error)}</p>` : ""}
   <input type="hidden" name="redirect" value="${escapeHtml(sanitizeDestination(redirect))}" />
-  <input type="email" name="email" />
-  <input type="password" name="password" />
-  <input type="checkbox" name="rememberMe" value="true" />
+  <label for="email">Email</label>
+  <input type="email" id="email" name="email" />
+  <label for="password">Password</label>
+  <input type="password" id="password" name="password" />
+  <input type="checkbox" id="rememberMe" name="rememberMe" value="true" />
+  <label for="rememberMe">Remember me</label>
   <button type="submit">Log in</button>
 </form>`);
 }
@@ -42,6 +47,7 @@ function handleLoginSubmit(req, res, body) {
   const user = verifyCredentials(email, password);
 
   if (!user) {
+    logger.warn("login_failed", { email });
     renderLoginPage(res, { status: 401, redirect: redirect || "", error: GENERIC_ERROR });
     return;
   }
@@ -49,6 +55,8 @@ function handleLoginSubmit(req, res, body) {
   const rememberMe = body.rememberMe === "true" || body.rememberMe === "on";
   const sessionId = createSession(user.id);
   const destination = sanitizeDestination(redirect);
+
+  logger.info("user_authenticated", { userId: user.id, rememberMe });
 
   res.writeHead(302, {
     "Set-Cookie": buildSessionCookie(sessionId, { rememberMe }),

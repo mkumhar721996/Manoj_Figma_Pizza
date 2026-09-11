@@ -9,6 +9,7 @@ function hashPassword(plainPassword) {
 }
 
 function verifyPassword(plainPassword, storedHash) {
+  if (typeof plainPassword !== "string" || plainPassword.length === 0) return false;
   const [salt, key] = storedHash.split(":");
   const keyBuffer = Buffer.from(key, "hex");
   const derivedKey = crypto.scryptSync(plainPassword, salt, KEY_LENGTH);

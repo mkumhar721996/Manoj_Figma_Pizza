@@ -24,7 +24,11 @@ function parseCookies(cookieHeader) {
     if (index === -1) continue;
     const key = pair.slice(0, index).trim();
     const value = pair.slice(index + 1).trim();
-    cookies[key] = decodeURIComponent(value);
+    try {
+      cookies[key] = decodeURIComponent(value);
+    } catch {
+      continue;
+    }
   }
   return cookies;
 }
