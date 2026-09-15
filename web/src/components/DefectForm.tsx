@@ -1,5 +1,5 @@
 import { FormEvent, useId, useState } from "react";
-import { NewDefectInput, PRIORITIES, SEVERITIES } from "../api/defectsApi";
+import { NewDefectInput, PRIORITIES, ProjectMember, SEVERITIES } from "../api/defectsApi";
 import "./DefectForm.css";
 
 export type DefectFormErrors = Record<string, string>;
@@ -70,9 +70,15 @@ export interface DefectFormProps {
   onSubmit: (input: NewDefectInput) => void;
   isSubmitting?: boolean;
   serverErrors?: DefectFormErrors;
+  projectMembers?: ProjectMember[];
 }
 
-export function DefectForm({ onSubmit, isSubmitting = false, serverErrors = {} }: DefectFormProps) {
+export function DefectForm({
+  onSubmit,
+  isSubmitting = false,
+  serverErrors = {},
+  projectMembers = [],
+}: DefectFormProps) {
   const [values, setValues] = useState<DefectFormState>(INITIAL_STATE);
   const [errors, setErrors] = useState<DefectFormErrors>({});
   const formId = useId();
@@ -178,12 +184,18 @@ export function DefectForm({ onSubmit, isSubmitting = false, serverErrors = {} }
 
       <div className="defect-form__field">
         <label htmlFor={`${formId}-reporter`}>Reporter</label>
-        <input
+        <select
           {...fieldProps("reporter")}
-          type="text"
           value={values.reporter}
           onChange={(event) => updateField("reporter", event.target.value)}
-        />
+        >
+          <option value="">Select reporter</option>
+          {projectMembers.map((member) => (
+            <option key={member.id} value={member.name}>
+              {member.name}
+            </option>
+          ))}
+        </select>
         {renderError("reporter")}
       </div>
 
@@ -199,12 +211,18 @@ export function DefectForm({ onSubmit, isSubmitting = false, serverErrors = {} }
 
       <div className="defect-form__field">
         <label htmlFor={`${formId}-assignee`}>Assignee (optional)</label>
-        <input
+        <select
           id={`${formId}-assignee`}
-          type="text"
           value={values.assignee}
           onChange={(event) => updateField("assignee", event.target.value)}
-        />
+        >
+          <option value="">Unassigned</option>
+          {projectMembers.map((member) => (
+            <option key={member.id} value={member.name}>
+              {member.name}
+            </option>
+          ))}
+        </select>
       </div>
 
       <div className="defect-form__field">

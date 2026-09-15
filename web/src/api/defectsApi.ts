@@ -1,3 +1,5 @@
+import { getAuthHeaders } from "../auth/session";
+
 export const SEVERITIES = ["Low", "Medium", "High", "Critical"] as const;
 export type Severity = (typeof SEVERITIES)[number];
 
@@ -45,8 +47,31 @@ export class DefectApiError extends Error {
   }
 }
 
+function createTraceId(): string {
+  return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+}
+
+async function apiFetch(url: string, init: RequestInit = {}): Promise<Response> {
+  const traceId = createTraceId();
+  const startedAt = typeof performance !== "undefined" ? performance.now() : Date.now();
+  const method = init.method ?? "GET";
+  const headers = { ...getAuthHeaders(), "X-Trace-Id": traceId, ...init.headers };
+
+  try {
+    const response = await fetch(url, { ...init, headers });
+    const durationMs = (typeof performance !== "undefined" ? performance.now() : Date.now()) - startedAt;
+    const logMethod = response.ok ? console.log : console.error;
+    logMethod("[api]", { traceId, method, url, status: response.status, durationMs: Math.round(durationMs) });
+    return response;
+  } catch (error) {
+    const durationMs = (typeof performance !== "undefined" ? performance.now() : Date.now()) - startedAt;
+    console.error("[api]", { traceId, method, url, error, durationMs: Math.round(durationMs) });
+    throw error;
+  }
+}
+
 export async function createDefect(input: NewDefectInput): Promise<Defect> {
-  const response = await fetch("/api/defects", {
+  const response = await apiFetch("/api/defects", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(input),
@@ -61,7 +86,7 @@ export async function createDefect(input: NewDefectInput): Promise<Defect> {
 }
 
 export async function getDefect(id: string): Promise<Defect> {
-  const response = await fetch(`/api/defects/${encodeURIComponent(id)}`);
+  const response = await apiFetch(`/api/defects/${encodeURIComponent(id)}`);
 
   if (!response.ok) {
     throw new Error(`Failed to load defect ${id}`);
@@ -71,7 +96,7 @@ export async function getDefect(id: string): Promise<Defect> {
 }
 
 export async function getProjectMembers(): Promise<ProjectMember[]> {
-  const response = await fetch("/api/project-members");
+  const response = await apiFetch("/api/project-members");
 
   if (!response.ok) {
     throw new Error("Failed to load project members");

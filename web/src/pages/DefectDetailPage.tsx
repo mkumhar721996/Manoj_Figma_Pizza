@@ -19,7 +19,8 @@ export function DefectDetailPage() {
           setDefect(result);
         }
       })
-      .catch(() => {
+      .catch((error: unknown) => {
+        console.error("[DefectDetailPage] failed to load defect", { id, error });
         if (!cancelled) {
           setLoadError("Unable to load this defect.");
         }
