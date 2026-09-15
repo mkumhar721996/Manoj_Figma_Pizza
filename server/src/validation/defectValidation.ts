@@ -25,6 +25,14 @@ function isBlank(value: unknown): boolean {
   return typeof value !== "string" || value.trim().length === 0;
 }
 
+function trimmedOrUndefined(value: unknown): string | undefined {
+  return typeof value === "string" && value.trim().length > 0 ? value.trim() : undefined;
+}
+
+function isStringArray(value: unknown): value is string[] {
+  return Array.isArray(value) && value.every((item) => typeof item === "string");
+}
+
 export function validateNewDefect(input: Partial<NewDefectInput>): ValidationErrors {
   const errors: ValidationErrors = {};
 
@@ -34,20 +42,32 @@ export function validateNewDefect(input: Partial<NewDefectInput>): ValidationErr
     }
   }
 
-  if (!isBlank(input.severity) && !SEVERITIES.includes(input.severity as never)) {
+  const severity = trimmedOrUndefined(input.severity);
+  if (severity && !SEVERITIES.includes(severity as never)) {
     errors.severity = `Severity must be one of: ${SEVERITIES.join(", ")}`;
   }
 
-  if (!isBlank(input.priority) && !PRIORITIES.includes(input.priority as never)) {
+  const priority = trimmedOrUndefined(input.priority);
+  if (priority && !PRIORITIES.includes(priority as never)) {
     errors.priority = `Priority must be one of: ${PRIORITIES.join(", ")}`;
   }
 
-  if (!isBlank(input.reporter) && !VALID_MEMBER_NAMES.has(input.reporter as string)) {
+  const reporter = trimmedOrUndefined(input.reporter);
+  if (reporter && !VALID_MEMBER_NAMES.has(reporter)) {
     errors.reporter = "Reporter must be a current project member";
   }
 
-  if (!isBlank(input.assignee) && !VALID_MEMBER_NAMES.has(input.assignee as string)) {
+  const assignee = trimmedOrUndefined(input.assignee);
+  if (assignee && !VALID_MEMBER_NAMES.has(assignee)) {
     errors.assignee = "Assignee must be a current project member";
+  }
+
+  if (input.attachments !== undefined && !isStringArray(input.attachments)) {
+    errors.attachments = "Attachments must be a list of file names";
+  }
+
+  if (input.screenshots !== undefined && !isStringArray(input.screenshots)) {
+    errors.screenshots = "Screenshots must be a list of file names";
   }
 
   return errors;

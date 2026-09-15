@@ -1,9 +1,10 @@
 import request from "supertest";
 import { beforeEach, describe, expect, it } from "vitest";
+import { getTokenForMember } from "../src/auth/memberTokens.js";
 import { app } from "../src/app.js";
 import { listDefects, resetStore } from "../src/store/defectStore.js";
 
-const AUTH_HEADER = "Bearer u1";
+const AUTH_HEADER = `Bearer ${getTokenForMember("u1")}`;
 
 const validPayload = {
   title: "Checkout button unresponsive",
@@ -20,6 +21,15 @@ describe("POST /api/defects", () => {
 
   it("rejects an unauthenticated request", async () => {
     const res = await request(app).post("/api/defects").send(validPayload);
+
+    expect(res.status).toBe(401);
+  });
+
+  it("rejects a request authenticated with a member's public id instead of their token", async () => {
+    const res = await request(app)
+      .post("/api/defects")
+      .set("Authorization", "Bearer u1")
+      .send(validPayload);
 
     expect(res.status).toBe(401);
   });
@@ -92,6 +102,42 @@ describe("POST /api/defects", () => {
 
     expect(res.status).toBe(400);
     expect(res.body.errors.assignee).toBeDefined();
+    expect(listDefects()).toHaveLength(before);
+  });
+
+  it("accepts a severity value with surrounding whitespace by trimming before enum validation", async () => {
+    const res = await request(app)
+      .post("/api/defects")
+      .set("Authorization", AUTH_HEADER)
+      .send({ ...validPayload, severity: " High" });
+
+    expect(res.status).toBe(201);
+    expect(res.body.severity).toBe("High");
+  });
+
+  it("rejects non-array attachments and does not create a defect", async () => {
+    const before = listDefects().length;
+
+    const res = await request(app)
+      .post("/api/defects")
+      .set("Authorization", AUTH_HEADER)
+      .send({ ...validPayload, attachments: "not-an-array" });
+
+    expect(res.status).toBe(400);
+    expect(res.body.errors.attachments).toBeDefined();
+    expect(listDefects()).toHaveLength(before);
+  });
+
+  it("rejects non-array screenshots and does not create a defect", async () => {
+    const before = listDefects().length;
+
+    const res = await request(app)
+      .post("/api/defects")
+      .set("Authorization", AUTH_HEADER)
+      .send({ ...validPayload, screenshots: { file: "bug.png" } });
+
+    expect(res.status).toBe(400);
+    expect(res.body.errors.screenshots).toBeDefined();
     expect(listDefects()).toHaveLength(before);
   });
 });
