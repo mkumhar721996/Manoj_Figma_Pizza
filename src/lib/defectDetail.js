@@ -1,14 +1,27 @@
 import { canViewDefect } from './auth/canViewDefect.js';
 import { computeSlaStatus } from './sla/computeSlaStatus.js';
+import { logEvent } from './log.js';
 
 export function getDefectDetail(repo, currentUser, projectId, defectId) {
   const defect = repo.findDefectById(defectId);
   if (!defect || defect.projectId !== projectId) {
+    logEvent('info', 'defect.not_found', {
+      userId: currentUser.id,
+      projectId,
+      defectId,
+      reason: defect ? 'defect_belongs_to_different_project' : 'defect_does_not_exist',
+    });
     return { status: 404 };
   }
 
   const memberships = repo.findMembershipsByProjectId(projectId);
   if (!canViewDefect(currentUser, defect, memberships)) {
+    logEvent('warn', 'defect.access_denied', {
+      userId: currentUser.id,
+      projectId,
+      defectId,
+      reason: 'not_a_project_member_and_not_the_reporter',
+    });
     return { status: 403 };
   }
 

@@ -397,3 +397,30 @@ notes: |
     classDef touched fill:#f96,color:#000
     class Page,Route,AuthSvc,SlaSvc,DetailView,FieldsPanel,AuditInfo,AttachmentsSection,SlaIndicator touched
   ```
+
+revision_1: |
+  **Architecture revised during implementation (post-review, formally documented here rather than
+  re-run through the original plan-approval step).** The stack actually shipped is a plain
+  Node.js `http` server (`src/server.js`) with an in-memory repository (`src/data/db.js`) and
+  `node:test`, instead of the Next.js (App Router) + TypeScript + Prisma/PostgreSQL +
+  Vitest/Playwright stack proposed above. Rationale: STORY-017 is scoped to a single read-only
+  detail view with no create/update/delete paths in the parent epic yet, so a routed HTTP handler
+  plus pure, independently-tested lib/render functions delivers every AC (including the
+  authorization, SLA, accessibility, and responsiveness ones) without provisioning a database,
+  ORM migrations, or a frontend build pipeline that nothing else in the repo needs yet. This
+  keeps the one-time bootstrap cost proportional to the story instead of the "roughly a third of
+  scope is bootstrap" ratio flagged in `notes` above. If a later story in this epic needs
+  server-rendered React, client interactivity, or persistent storage, that's the point to
+  introduce Next.js/Prisma — not before there's a second consumer of that investment.
+
+  Two concrete deviations from the signatures/enums sketched above are intentional and carried
+  forward as the real contract:
+    - `canViewDefect(user, defect, memberships)` (src/lib/auth/canViewDefect.js) takes
+      `memberships` as a third argument rather than nesting them at `defect.project.memberships`,
+      because the in-memory repo exposes flat lookups (`findMembershipsByProjectId`,
+      `findUserById`, etc.) rather than Prisma-style relational `include`s. All three lib/render
+      layers (`defectDetail.js`, `canViewDefect.js`, `computeSlaStatus.js`) consistently follow
+      this flat-repo convention.
+    - `severity`/`priority` use the `'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL'` value set from this
+      plan (seed data in `src/data/db.js` was corrected to match; it briefly used ad hoc
+      `'P1'`/`'P2'` priority codes during prototyping).

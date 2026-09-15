@@ -36,3 +36,7 @@ test('a malformed token is rejected without throwing', () => {
   assert.equal(verifySessionToken('not-a-real-token', secret), null);
   assert.equal(verifySessionToken('', secret), null);
 });
+
+test('a token with a dot but corrupt base64url content is rejected without throwing', () => {
+  assert.equal(verifySessionToken('!!!invalid-base64!!!.!!!invalid-signature!!!', secret), null);
+});

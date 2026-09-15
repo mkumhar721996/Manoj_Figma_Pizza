@@ -5,7 +5,7 @@ import { renderAttachmentsSection } from './attachmentsSection.js';
 import { renderSlaIndicator } from './slaIndicator.js';
 
 // Contrast-checked against WCAG 2.1 AA (>= 4.5:1 for normal text) in
-// src/lib/a11y/contrastRatio.test.js — keep this as the single source of truth for both the
+// src/render/defectDetailPage.a11y.test.js — keep this as the single source of truth for both the
 // rendered CSS and that verification so the two can't drift apart.
 export const SLA_INDICATOR_COLORS = {
   at_risk: { background: '#fff3cd', text: '#664d03' },

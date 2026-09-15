@@ -8,8 +8,9 @@ export function renderDefectFieldsPanel(defect) {
   const assigneeName = defect.assignee ? defect.assignee.name : 'Unassigned';
   return `
     <section aria-labelledby="defect-fields-heading">
-      <h2 id="defect-fields-heading">${escapeHtml(defect.title)}</h2>
+      <h2 id="defect-fields-heading">Details</h2>
       <dl class="defect-fields">
+        ${field('Title', defect.title)}
         ${field('Description', defect.description)}
         ${field('Severity', defect.severity)}
         ${field('Priority', defect.priority)}

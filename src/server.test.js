@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { createServer } from './server.js';
 import { createSessionToken } from './lib/auth/session.js';
 import { SESSION_SECRET } from './config.js';
+import { db } from './data/db.js';
 
 let server;
 let baseUrl;
@@ -102,4 +103,25 @@ test('security: a token signed with the wrong secret is rejected', async () => {
     headers: { Authorization: `Bearer ${forgedToken}` },
   });
   assert.equal(res.status, 401);
+});
+
+test('an unexpected error while loading a defect returns 500 instead of crashing the server', async () => {
+  const throwingRepo = {
+    ...db,
+    findDefectById: () => {
+      throw new Error('boom');
+    },
+  };
+  const throwingServer = createServer(throwingRepo);
+  await new Promise((resolve) => throwingServer.listen(0, resolve));
+  const { port } = throwingServer.address();
+
+  try {
+    const res = await fetch(`http://127.0.0.1:${port}/projects/project-a/defects/defect-1`, {
+      headers: { Authorization: `Bearer ${createSessionToken('user-member-a', SESSION_SECRET)}` },
+    });
+    assert.equal(res.status, 500);
+  } finally {
+    await new Promise((resolve) => throwingServer.close(resolve));
+  }
 });

@@ -22,6 +22,7 @@ test('hasSkippedHeadingLevel is true when a level is skipped', () => {
 test('countLandmarks counts main landmarks (axe: landmark-one-main)', () => {
   assert.equal(countLandmarks('<main><h1>x</h1></main>', 'main'), 1);
   assert.equal(countLandmarks('<div>no landmark</div>', 'main'), 0);
+  assert.equal(countLandmarks('<main>x</main><main>y</main>', 'main'), 2);
 });
 
 test('linksMissingAccessibleName flags anchors with no discernible text (axe: link-name)', () => {
