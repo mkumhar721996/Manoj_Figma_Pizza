@@ -2,8 +2,22 @@ import { createServer as createHttpServer } from 'node:http';
 import { getDefectDetail } from './lib/defectDetail.js';
 import { renderDefectDetailPage, renderAccessDeniedPage, renderNotFoundPage } from './render/defectDetailPage.js';
 import { db } from './data/db.js';
+import { verifySessionToken } from './lib/auth/session.js';
+import { SESSION_SECRET } from './config.js';
 
 const DEFECT_ROUTE = /^\/projects\/([^/]+)\/defects\/([^/]+)$/;
+const BEARER_PREFIX = 'Bearer ';
+
+function authenticate(req, repo) {
+  const header = req.headers.authorization;
+  if (!header || !header.startsWith(BEARER_PREFIX)) return null;
+
+  const token = header.slice(BEARER_PREFIX.length);
+  const userId = verifySessionToken(token, SESSION_SECRET);
+  if (!userId) return null;
+
+  return repo.findUserById(userId);
+}
 
 export function createServer(repo = db) {
   return createHttpServer((req, res) => {
@@ -17,8 +31,7 @@ export function createServer(repo = db) {
     }
 
     const [, projectId, defectId] = match;
-    const userId = req.headers['x-user-id'];
-    const currentUser = userId ? repo.findUserById(userId) : null;
+    const currentUser = authenticate(req, repo);
 
     if (!currentUser) {
       res.writeHead(401, { 'Content-Type': 'text/plain' });

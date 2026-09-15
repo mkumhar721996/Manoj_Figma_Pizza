@@ -1,6 +1,8 @@
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { createServer } from './server.js';
+import { createSessionToken } from './lib/auth/session.js';
+import { SESSION_SECRET } from './config.js';
 
 let server;
 let baseUrl;
@@ -17,7 +19,10 @@ after(async () => {
 });
 
 function get(path, userId) {
-  const headers = userId ? { 'x-user-id': userId } : {};
+  const headers = {};
+  if (userId) {
+    headers.Authorization = `Bearer ${createSessionToken(userId, SESSION_SECRET)}`;
+  }
   return fetch(`${baseUrl}${path}`, { headers });
 }
 
@@ -81,5 +86,20 @@ test('returns 404 for a defect that does not exist', async () => {
 
 test('returns 401 when no authenticated user is provided', async () => {
   const res = await get('/projects/project-a/defects/defect-1');
+  assert.equal(res.status, 401);
+});
+
+test('security: an unsigned x-user-id header claiming an identity is rejected', async () => {
+  const res = await fetch(`${baseUrl}/projects/project-a/defects/defect-1`, {
+    headers: { 'x-user-id': 'user-member-a' },
+  });
+  assert.equal(res.status, 401);
+});
+
+test('security: a token signed with the wrong secret is rejected', async () => {
+  const forgedToken = createSessionToken('user-member-a', 'wrong-secret');
+  const res = await fetch(`${baseUrl}/projects/project-a/defects/defect-1`, {
+    headers: { Authorization: `Bearer ${forgedToken}` },
+  });
   assert.equal(res.status, 401);
 });

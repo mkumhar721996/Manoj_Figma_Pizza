@@ -4,7 +4,15 @@ import { renderAuditInfo } from './auditInfo.js';
 import { renderAttachmentsSection } from './attachmentsSection.js';
 import { renderSlaIndicator } from './slaIndicator.js';
 
-const PAGE_STYLES = `
+// Contrast-checked against WCAG 2.1 AA (>= 4.5:1 for normal text) in
+// src/lib/a11y/contrastRatio.test.js — keep this as the single source of truth for both the
+// rendered CSS and that verification so the two can't drift apart.
+export const SLA_INDICATOR_COLORS = {
+  at_risk: { background: '#fff3cd', text: '#664d03' },
+  breached: { background: '#f8d7da', text: '#842029' },
+};
+
+export const PAGE_STYLES = `
   * { box-sizing: border-box; }
   body { font-family: system-ui, sans-serif; margin: 0; padding: 1rem; max-width: 60rem; margin-inline: auto; }
   a, button { min-height: 44px; display: inline-flex; align-items: center; }
@@ -12,8 +20,8 @@ const PAGE_STYLES = `
   .attachments-list { list-style: none; padding: 0; }
   .attachments-list li { display: flex; justify-content: space-between; gap: 1rem; padding: 0.5rem 0; flex-wrap: wrap; }
   .sla-indicator { padding: 0.5rem 1rem; border-radius: 0.25rem; font-weight: bold; }
-  .sla-indicator--at_risk { background: #fff3cd; color: #664d03; }
-  .sla-indicator--breached { background: #f8d7da; color: #842029; }
+  .sla-indicator--at_risk { background: ${SLA_INDICATOR_COLORS.at_risk.background}; color: ${SLA_INDICATOR_COLORS.at_risk.text}; }
+  .sla-indicator--breached { background: ${SLA_INDICATOR_COLORS.breached.background}; color: ${SLA_INDICATOR_COLORS.breached.text}; }
   @media (max-width: 600px) {
     .defect-fields, .audit-info { grid-template-columns: 1fr; }
     .attachments-list li { flex-direction: column; }
