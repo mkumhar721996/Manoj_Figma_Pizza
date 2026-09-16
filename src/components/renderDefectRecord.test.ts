@@ -56,6 +56,14 @@ test('shows no SLA indicator when rules exist for other projects/priorities only
   assert.doesNotMatch(html, /data-testid="sla-indicator"/);
 });
 
+// Security: untrusted defect IDs must not be able to inject markup/script.
+test('escapes HTML-significant characters in the defect id', () => {
+  const malicious: Defect = { ...defect, id: '"><script>alert(1)</script>' };
+  const html = renderDefectRecord(malicious, [rule], new Date('2026-09-14T02:00:00Z'));
+  assert.doesNotMatch(html, /<script>/);
+  assert.match(html, /&lt;script&gt;/);
+});
+
 // AC6: rendering the full record end-to-end performs no network call.
 test('does not call fetch when rendering a breached defect end-to-end', () => {
   const originalFetch = globalThis.fetch;
