@@ -60,6 +60,28 @@ describe("DefectForm", () => {
     expect(onSubmit).not.toHaveBeenCalled();
   });
 
+  it("logs and does not let a rejected onSubmit escape as an unhandled rejection", async () => {
+    const submitError = new Error("network down");
+    const onSubmit = vi.fn().mockRejectedValue(submitError);
+    const consoleErrorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+
+    render(<DefectForm onSubmit={onSubmit} projectMembers={PROJECT_MEMBERS} />);
+
+    fireEvent.change(screen.getByLabelText(/^title/i), { target: { value: "Checkout broken" } });
+    fireEvent.change(screen.getByLabelText(/description/i), { target: { value: "It does not work." } });
+    fireEvent.change(screen.getByLabelText(/severity/i), { target: { value: "High" } });
+    fireEvent.change(screen.getByLabelText(/priority/i), { target: { value: "Urgent" } });
+    fireEvent.change(screen.getByLabelText(/^reporter/i), { target: { value: "Jane Doe" } });
+
+    fireEvent.click(screen.getByRole("button", { name: /create defect/i }));
+
+    await vi.waitFor(() =>
+      expect(consoleErrorSpy).toHaveBeenCalledWith("[DefectForm] onSubmit rejected", submitError),
+    );
+
+    consoleErrorSpy.mockRestore();
+  });
+
   it("keeps every field and the submit action usable at a mobile viewport width", () => {
     window.innerWidth = 375;
     window.dispatchEvent(new Event("resize"));

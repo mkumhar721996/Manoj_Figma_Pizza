@@ -67,7 +67,7 @@ function toNewDefectInput(state: DefectFormState): NewDefectInput {
 }
 
 export interface DefectFormProps {
-  onSubmit: (input: NewDefectInput) => void;
+  onSubmit: (input: NewDefectInput) => void | Promise<void>;
   isSubmitting?: boolean;
   serverErrors?: DefectFormErrors;
   projectMembers?: ProjectMember[];
@@ -98,7 +98,9 @@ export function DefectForm({
       return;
     }
 
-    onSubmit(toNewDefectInput(values));
+    Promise.resolve(onSubmit(toNewDefectInput(values))).catch((error: unknown) => {
+      console.error("[DefectForm] onSubmit rejected", error);
+    });
   }
 
   function fieldProps(field: RequiredField) {
