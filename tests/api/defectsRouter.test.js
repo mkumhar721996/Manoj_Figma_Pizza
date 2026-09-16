@@ -48,6 +48,19 @@ test('links the duplicate and exposes it on both detail views', async () => {
   assert.deepEqual(canonical.duplicateDefectIds, ['dup-1']);
 });
 
+test('rejects linking a defect as a duplicate of itself', async () => {
+  const response = await fetch(`${baseUrl}/defects/dup-1/duplicate-link`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'x-user-role': 'TRIAGER' },
+    body: JSON.stringify({ canonicalDefectId: 'dup-1' }),
+  });
+  assert.equal(response.status, 400);
+
+  const dupResponse = await fetch(`${baseUrl}/defects/dup-1`);
+  const dup = await dupResponse.json();
+  assert.equal(dup.duplicateOfId, null);
+});
+
 test('rejects an unauthorized user', async () => {
   const response = await fetch(`${baseUrl}/defects/dup-1/duplicate-link`, {
     method: 'POST',

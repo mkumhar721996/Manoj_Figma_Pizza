@@ -21,6 +21,10 @@ function linkAsDuplicate({ actingUser, duplicateDefectId, canonicalDefectId }, r
     throw new UnauthorizedError();
   }
 
+  if (duplicateDefectId === canonicalDefectId) {
+    throw new DuplicateLinkError('A defect cannot be marked as a duplicate of itself');
+  }
+
   const duplicateDefect = repo.get(duplicateDefectId);
   if (!duplicateDefect) {
     throw new NotFoundError(duplicateDefectId);

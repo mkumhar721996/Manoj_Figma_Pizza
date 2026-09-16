@@ -4,6 +4,7 @@ const { DefectRepository } = require('../../src/domain/defectRepository');
 const {
   linkAsDuplicate,
   UnauthorizedError,
+  DuplicateLinkError,
 } = require('../../src/domain/duplicateLinkService');
 
 let repo;
@@ -38,6 +39,15 @@ test('preserves the link when the duplicate is Cancelled', () => {
 
   assert.equal(repo.get('dup-1')?.duplicateOfId, 'canonical-1');
   assert.equal(repo.get('dup-1')?.status, 'Cancelled');
+});
+
+test('rejects linking a defect as a duplicate of itself', () => {
+  const triager = { id: 'u1', role: 'TRIAGER' };
+  assert.throws(
+    () => linkAsDuplicate({ actingUser: triager, duplicateDefectId: 'dup-1', canonicalDefectId: 'dup-1' }, repo),
+    DuplicateLinkError,
+  );
+  assert.equal(repo.get('dup-1')?.duplicateOfId, null);
 });
 
 test('rejects the action for an unauthorized user', () => {
