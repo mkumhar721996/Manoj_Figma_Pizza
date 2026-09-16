@@ -3,13 +3,13 @@ import type { Comment, CurrentUser } from '../../types.js';
 
 interface CommentItemProps {
   comment: Comment;
-  currentUser: CurrentUser;
+  currentUser: CurrentUser | null;
   onEdit: (commentId: string, body: string) => void;
   onDelete: (commentId: string) => void;
 }
 
-function canModify(comment: Comment, currentUser: CurrentUser): boolean {
-  return currentUser.id === comment.authorId || currentUser.role === 'qa_lead';
+function canModify(comment: Comment, currentUser: CurrentUser | null): boolean {
+  return !!currentUser && (currentUser.id === comment.authorId || currentUser.role === 'qa_lead');
 }
 
 export function CommentItem({ comment, currentUser, onEdit, onDelete }: CommentItemProps) {
@@ -18,6 +18,9 @@ export function CommentItem({ comment, currentUser, onEdit, onDelete }: CommentI
   const allowedToModify = canModify(comment, currentUser);
 
   function handleSave() {
+    if (!draft.trim()) {
+      return;
+    }
     onEdit(comment.id, draft);
     setIsEditing(false);
   }

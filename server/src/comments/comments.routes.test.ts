@@ -109,4 +109,27 @@ describe('comments routes', () => {
     const res = await request(app).get('/api/defects/defect-1/comments').set('Authorization', authorToken);
     expect(res.body.map((c: any) => c.body)).toEqual(['first', 'second']);
   });
+
+  it('allows an unauthenticated viewer to see the comment history', async () => {
+    await createComment(authorToken, 'visible to everyone');
+
+    const res = await request(app).get('/api/defects/defect-1/comments');
+    expect(res.status).toBe(200);
+    expect(res.body.map((c: any) => c.body)).toEqual(['visible to everyone']);
+  });
+
+  it('allows an unauthenticated viewer to see the empty-state list for a defect with no comments', async () => {
+    const res = await request(app).get('/api/defects/no-comments-defect/comments');
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual([]);
+  });
+
+  it('rejects submission with a malformed bearer token instead of crashing', async () => {
+    const incompleteToken = `Bearer ${Buffer.from(JSON.stringify({ id: 'u5' })).toString('base64')}`;
+    const res = await request(app)
+      .post('/api/defects/defect-1/comments')
+      .set('Authorization', incompleteToken)
+      .send({ body: 'sneaky' });
+    expect(res.status).toBe(403);
+  });
 });

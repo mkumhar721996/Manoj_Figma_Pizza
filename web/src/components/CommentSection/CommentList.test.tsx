@@ -36,4 +36,18 @@ describe('CommentList', () => {
     const rendered = screen.getAllByTestId('comment-body').map((el) => el.textContent);
     expect(rendered).toEqual(['first', 'second']);
   });
+
+  it('shows an empty-state message to an unauthenticated viewer', () => {
+    render(<CommentList comments={[]} currentUser={null} onEdit={vi.fn()} onDelete={vi.fn()} />);
+    expect(screen.getByText(/no comments yet/i)).toBeInTheDocument();
+  });
+
+  it('shows the comment history to an unauthenticated viewer without edit/delete controls', () => {
+    const comments = [makeComment('c1', 'first', '2026-01-01T00:00:00.000Z')];
+    render(<CommentList comments={comments} currentUser={null} onEdit={vi.fn()} onDelete={vi.fn()} />);
+
+    expect(screen.getByTestId('comment-body')).toHaveTextContent('first');
+    expect(screen.queryByRole('button', { name: /edit/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /delete/i })).not.toBeInTheDocument();
+  });
 });

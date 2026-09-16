@@ -11,12 +11,16 @@ interface CommentSectionProps {
 
 export function CommentSection({ defectId, currentUser }: CommentSectionProps) {
   const [comments, setComments] = useState<Comment[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   const refresh = useCallback(() => {
-    if (!currentUser) {
-      return;
-    }
-    commentsApi.list(defectId, currentUser).then(setComments);
+    commentsApi
+      .list(defectId, currentUser)
+      .then((result) => {
+        setComments(result);
+        setError(null);
+      })
+      .catch(() => setError("Couldn't load comments. Please try again."));
   }, [defectId, currentUser]);
 
   useEffect(() => {
@@ -27,30 +31,43 @@ export function CommentSection({ defectId, currentUser }: CommentSectionProps) {
     if (!currentUser) {
       return;
     }
-    await commentsApi.add(defectId, currentUser, body);
-    refresh();
+    try {
+      await commentsApi.add(defectId, currentUser, body);
+      refresh();
+    } catch {
+      setError("Couldn't submit your comment. Please try again.");
+    }
   }
 
   async function handleEdit(commentId: string, body: string) {
     if (!currentUser) {
       return;
     }
-    await commentsApi.edit(commentId, currentUser, body);
-    refresh();
+    try {
+      await commentsApi.edit(commentId, currentUser, body);
+      refresh();
+    } catch {
+      setError("Couldn't save your edit. Please try again.");
+    }
   }
 
   async function handleDelete(commentId: string) {
     if (!currentUser) {
       return;
     }
-    await commentsApi.remove(commentId, currentUser);
-    refresh();
+    try {
+      await commentsApi.remove(commentId, currentUser);
+      refresh();
+    } catch {
+      setError("Couldn't delete the comment. Please try again.");
+    }
   }
 
   return (
     <section>
       <h2>Comments</h2>
-      {currentUser && <CommentList comments={comments} currentUser={currentUser} onEdit={handleEdit} onDelete={handleDelete} />}
+      {error && <p role="alert">{error}</p>}
+      <CommentList comments={comments} currentUser={currentUser} onEdit={handleEdit} onDelete={handleDelete} />
       <CommentForm currentUser={currentUser} onSubmit={handleSubmit} />
     </section>
   );

@@ -65,6 +65,23 @@ describe('CommentItem', () => {
     expect(onDelete).toHaveBeenCalledWith('c1');
   });
 
+  it('does not call onEdit when the saved draft is empty', () => {
+    const onEdit = vi.fn();
+    render(<CommentItem comment={comment} currentUser={author} onEdit={onEdit} onDelete={vi.fn()} />);
+
+    fireEvent.click(screen.getByRole('button', { name: /edit/i }));
+    fireEvent.change(screen.getByRole('textbox'), { target: { value: '   ' } });
+    fireEvent.click(screen.getByRole('button', { name: /save/i }));
+
+    expect(onEdit).not.toHaveBeenCalled();
+  });
+
+  it('does not render edit/delete controls for an unauthenticated viewer', () => {
+    render(<CommentItem comment={comment} currentUser={null} onEdit={vi.fn()} onDelete={vi.fn()} />);
+    expect(screen.queryByRole('button', { name: /edit/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /delete/i })).not.toBeInTheDocument();
+  });
+
   it('shows an edited indicator when the comment has been edited', () => {
     render(
       <CommentItem

@@ -21,7 +21,7 @@ export function createCommentsRouter(service: CommentsService): Router {
     res.status(201).json(comment);
   });
 
-  router.get('/defects/:defectId/comments', requireProjectMember, (req, res) => {
+  router.get('/defects/:defectId/comments', (req, res) => {
     const comments = service.listComments(req.params.defectId);
     res.status(200).json(comments);
   });

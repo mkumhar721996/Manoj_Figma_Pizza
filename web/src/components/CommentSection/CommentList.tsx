@@ -3,7 +3,7 @@ import type { Comment, CurrentUser } from '../../types.js';
 
 interface CommentListProps {
   comments: Comment[];
-  currentUser: CurrentUser;
+  currentUser: CurrentUser | null;
   onEdit: (commentId: string, body: string) => void;
   onDelete: (commentId: string) => void;
 }
