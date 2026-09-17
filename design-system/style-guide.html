@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Manoj Figma Pizza — Design System Style Guide</title>
+<link rel="stylesheet" href="tokens.css" />
+<link rel="stylesheet" href="prototype-utils.css" />
+<style>
+  body {
+    margin: 0;
+    padding: var(--space-4);
+  }
+  .sg-section {
+    max-width: 960px;
+    margin: 0 auto var(--space-4) auto;
+  }
+  .sg-section h2 {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    border-bottom: var(--border-width-sm) solid var(--color-border);
+    padding-bottom: var(--space-2);
+  }
+  .sg-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: var(--space-3);
+  }
+  .sg-swatch {
+    border: var(--border-width-sm) solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--color-surface);
+  }
+  .sg-swatch-fill {
+    height: 64px;
+  }
+  .sg-swatch-label {
+    padding: var(--space-2);
+  }
+  .sg-swatch-name {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    display: block;
+  }
+  .sg-swatch-value {
+    font-size: var(--font-size-sm);
+    color: var(--color-fg-muted);
+    display: block;
+  }
+  .sg-dim-bar {
+    background: var(--color-primary);
+    border-radius: var(--radius-sm);
+  }
+  .sg-box {
+    background: var(--color-surface);
+    border: var(--border-width-sm) solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 96px;
+    height: 96px;
+    color: var(--color-fg-muted);
+    font-size: var(--font-size-sm);
+  }
+  .sg-row {
+    display: flex;
+    align-items: flex-end;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+  .sg-shadow-box {
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    width: 140px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-sm);
+    color: var(--color-fg-muted);
+  }
+</style>
+</head>
+<body class="u-surface">
+
+  <header class="sg-section">
+    <h1 class="u-text-lg">Manoj Figma Pizza — Design System</h1>
+    <p class="u-text-md u-text-muted">
+      Reference tokens and prototype components, rendered live from
+      <code>tokens.json</code> via <code>tokens.css</code>, and styled with
+      <code>prototype-utils.css</code>.
+    </p>
+  </header>
+
+  <section class="sg-section">
+    <h2>Colors</h2>
+    <div class="sg-grid">
+      <div class="sg-swatch">
+        <div class="sg-swatch-fill" style="background: var(--color-fg);"></div>
+        <div class="sg-swatch-label">
+          <span class="sg-swatch-name">color-fg</span>
+          <span class="sg-swatch-value">#2b1b12</span>
+        </div>
+      </div>
+      <div class="sg-swatch">
+        <div class="sg-swatch-fill" style="background: var(--color-fg-muted);"></div>
+        <div class="sg-swatch-label">
+          <span class="sg-swatch-name">color-fg-muted</span>
+          <span class="sg-swatch-value">#6b5546</span>
+        </div>
+      </div>
+      <div class="sg-swatch">
+        <div class="sg-swatch-fill" style="background: var(--color-bg);"></div>
+        <div class="sg-swatch-label">
+          <span class="sg-swatch-name">color-bg</span>
+          <span class="sg-swatch-value">#fff8f0</span>
+        </div>
+      </div>
+      <div class="sg-swatch">
+        <div class="sg-swatch-fill" style="background: var(--color-surface);"></div>
+        <div class="sg-swatch-label">
+          <span class="sg-swatch-name">color-surface</span>
+          <span class="sg-swatch-value">#ffffff</span>
+        </div>
+      </div>
+      <div class="sg-swatch">
+        <div class="sg-swatch-fill" style="background: var(--color-primary);"></div>
+        <div class="sg-swatch-label">
+          <span class="sg-swatch-name">color-primary</span>
+          <span class="sg-swatch-value">#c1272d</span>
+        </div>
+      </div>
+      <div class="sg-swatch">
+        <div class="sg-swatch-fill" style="background: var(--color-primary-hover);"></div>
+        <div class="sg-swatch-label">
+          <span class="sg-swatch-name">color-primary-hover</span>
+          <span class="sg-swatch-value">#9e1f24</span>
+        </div>
+      </div>
+      <div class="sg-swatch">
+        <div class="sg-swatch-fill" style="background: var(--color-primary-fg);"></div>
+        <div class="sg-swatch-label">
+          <span class="sg-swatch-name">color-primary-fg</span>
+          <span class="sg-swatch-value">#ffffff</span>
+        </div>
+      </div>
+      <div class="sg-swatch">
+        <div class="sg-swatch-fill" style="background: var(--color-secondary);"></div>
+        <div class="sg-swatch-label">
+          <span class="sg-swatch-name">color-secondary</span>
+          <span class="sg-swatch-value">#2b6a4f</span>
+        </div>
+      </div>
+      <div class="sg-swatch">
+        <div class="sg-swatch-fill" style="background: var(--color-secondary-fg);"></div>
+        <div class="sg-swatch-label">
+          <span class="sg-swatch-name">color-secondary-fg</span>
+          <span class="sg-swatch-value">#ffffff</span>
+        </div>
+      </div>
+      <div class="sg-swatch">
+        <div class="sg-swatch-fill" style="background: var(--color-accent);"></div>
+        <div class="sg-swatch-label">
+          <span class="sg-swatch-name">color-accent</span>
+          <span class="sg-swatch-value">#f2a541</span>
+        </div>
+      </div>
+      <div class="sg-swatch">
+        <div class="sg-swatch-fill" style="background: var(--color-accent-fg);"></div>
+        <div class="sg-swatch-label">
+          <span class="sg-swatch-name">color-accent-fg</span>
+          <span class="sg-swatch-value">#3d2b0f</span>
+        </div>
+      </div>
+      <div class="sg-swatch">
+        <div class="sg-swatch-fill" style="background: var(--color-border);"></div>
+        <div class="sg-swatch-label">
+          <span class="sg-swatch-name">color-border</span>
+          <span class="sg-swatch-value">#e0d3c2</span>
+        </div>
+      </div>
+      <div class="sg-swatch">
+        <div class="sg-swatch-fill" style="background: var(--color-border-strong);"></div>
+        <div class="sg-swatch-label">
+          <span class="sg-swatch-name">color-border-strong</span>
+          <span class="sg-swatch-value">#c9b8a0</span>
+        </div>
+      </div>
+      <div class="sg-swatch">
+        <div class="sg-swatch-fill" style="background: var(--color-shadow);"></div>
+        <div class="sg-swatch-label">
+          <span class="sg-swatch-name">color-shadow</span>
+          <span class="sg-swatch-value">#000000 @ 16%</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sg-section">
+    <h2>Spacing scale</h2>
+    <div class="sg-row">
+      <div>
+        <div class="sg-dim-bar" style="width: var(--space-1); height: var(--space-1);"></div>
+        <p class="u-text-sm">space-1 (4px)</p>
+      </div>
+      <div>
+        <div class="sg-dim-bar" style="width: var(--space-2); height: var(--space-2);"></div>
+        <p class="u-text-sm">space-2 (8px)</p>
+      </div>
+      <div>
+        <div class="sg-dim-bar" style="width: var(--space-3); height: var(--space-3);"></div>
+        <p class="u-text-sm">space-3 (16px)</p>
+      </div>
+      <div>
+        <div class="sg-dim-bar" style="width: var(--space-4); height: var(--space-4);"></div>
+        <p class="u-text-sm">space-4 (24px)</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sg-section">
+    <h2>Radii</h2>
+    <div class="sg-row">
+      <div>
+        <div class="sg-box" style="border-radius: var(--radius-sm);">radius-sm</div>
+      </div>
+      <div>
+        <div class="sg-box" style="border-radius: var(--radius-md);">radius-md</div>
+      </div>
+      <div>
+        <div class="sg-box" style="border-radius: var(--radius-lg);">radius-lg</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sg-section">
+    <h2>Type scale</h2>
+    <p style="font-family: var(--font-family-base); font-size: var(--font-size-sm);">font-size-sm — The quick brown fox jumps over the lazy dog.</p>
+    <p style="font-family: var(--font-family-base); font-size: var(--font-size-md);">font-size-md — The quick brown fox jumps over the lazy dog.</p>
+    <p style="font-family: var(--font-family-base); font-size: var(--font-size-lg);">font-size-lg — The quick brown fox jumps over the lazy dog.</p>
+    <p style="font-family: var(--font-family-base); font-weight: var(--font-weight-regular);">font-weight-regular (400)</p>
+    <p style="font-family: var(--font-family-base); font-weight: var(--font-weight-bold);">font-weight-bold (700)</p>
+    <p style="font-family: var(--font-family-base); line-height: var(--line-height-base);">
+      line-height-base (1.5) applied across this paragraph so you can see how
+      multiple lines of body copy wrap and breathe within the type system.
+    </p>
+    <p class="u-text-sm u-text-muted">font-family-base: 'Inter', 'Helvetica Neue', Arial, sans-serif</p>
+  </section>
+
+  <section class="sg-section">
+    <h2>Elevation (shadow)</h2>
+    <div class="sg-row">
+      <div class="sg-shadow-box" style="box-shadow: var(--shadow-sm);">shadow-sm</div>
+      <div class="sg-shadow-box" style="box-shadow: var(--shadow-md);">shadow-md</div>
+    </div>
+  </section>
+
+  <section class="sg-section">
+    <h2>Border composite</h2>
+    <div class="sg-row">
+      <div class="sg-box" style="border: var(--border-default); border-radius: var(--radius-md);">border-default</div>
+    </div>
+  </section>
+
+  <section class="sg-section">
+    <h2>Component alias tokens</h2>
+    <div class="sg-grid">
+      <div class="sg-swatch">
+        <div class="sg-swatch-fill" style="background: var(--button-primary-background);"></div>
+        <div class="sg-swatch-label">
+          <span class="sg-swatch-name">button-primary-background</span>
+          <span class="sg-swatch-value">→ color-primary</span>
+        </div>
+      </div>
+      <div class="sg-swatch">
+        <div class="sg-swatch-fill" style="background: var(--button-primary-background-hover);"></div>
+        <div class="sg-swatch-label">
+          <span class="sg-swatch-name">button-primary-background-hover</span>
+          <span class="sg-swatch-value">→ color-primary-hover</span>
+        </div>
+      </div>
+      <div class="sg-swatch">
+        <div class="sg-swatch-fill" style="background: var(--button-primary-foreground);"></div>
+        <div class="sg-swatch-label">
+          <span class="sg-swatch-name">button-primary-foreground</span>
+          <span class="sg-swatch-value">→ color-primary-fg</span>
+        </div>
+      </div>
+      <div class="sg-swatch">
+        <div class="sg-swatch-fill" style="background: var(--button-secondary-background);"></div>
+        <div class="sg-swatch-label">
+          <span class="sg-swatch-name">button-secondary-background</span>
+          <span class="sg-swatch-value">→ color-surface</span>
+        </div>
+      </div>
+      <div class="sg-swatch">
+        <div class="sg-swatch-fill" style="background: var(--button-secondary-border);"></div>
+        <div class="sg-swatch-label">
+          <span class="sg-swatch-name">button-secondary-border</span>
+          <span class="sg-swatch-value">→ color-primary</span>
+        </div>
+      </div>
+      <div class="sg-swatch">
+        <div class="sg-swatch-fill" style="background: var(--card-default-background);"></div>
+        <div class="sg-swatch-label">
+          <span class="sg-swatch-name">card-default-background</span>
+          <span class="sg-swatch-value">→ color-surface</span>
+        </div>
+      </div>
+      <div class="sg-swatch">
+        <div class="sg-swatch-fill" style="background: var(--card-default-border);"></div>
+        <div class="sg-swatch-label">
+          <span class="sg-swatch-name">card-default-border</span>
+          <span class="sg-swatch-value">→ color-border</span>
+        </div>
+      </div>
+      <div class="sg-swatch">
+        <div class="sg-swatch-fill" style="background: var(--chip-default-background);"></div>
+        <div class="sg-swatch-label">
+          <span class="sg-swatch-name">chip-default-background</span>
+          <span class="sg-swatch-value">→ color-accent</span>
+        </div>
+      </div>
+      <div class="sg-swatch">
+        <div class="sg-swatch-fill" style="background: var(--chip-default-foreground);"></div>
+        <div class="sg-swatch-label">
+          <span class="sg-swatch-name">chip-default-foreground</span>
+          <span class="sg-swatch-value">→ color-accent-fg</span>
+        </div>
+      </div>
+      <div class="sg-swatch">
+        <div class="sg-swatch-fill" style="background: var(--input-default-background);"></div>
+        <div class="sg-swatch-label">
+          <span class="sg-swatch-name">input-default-background</span>
+          <span class="sg-swatch-value">→ color-surface</span>
+        </div>
+      </div>
+      <div class="sg-swatch">
+        <div class="sg-swatch-fill" style="background: var(--input-default-border);"></div>
+        <div class="sg-swatch-label">
+          <span class="sg-swatch-name">input-default-border</span>
+          <span class="sg-swatch-value">→ color-border</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sg-section">
+    <h2>Buttons</h2>
+    <div class="u-row">
+      <button class="btn btn-primary">Add to order</button>
+      <button class="btn btn-secondary">View menu</button>
+    </div>
+  </section>
+
+  <section class="sg-section">
+    <h2>Card</h2>
+    <div class="card" style="max-width: 320px;">
+      <h3 class="card-title">Margherita Pizza</h3>
+      <p class="card-body">San Marzano tomato, fior di latte mozzarella, fresh basil.</p>
+      <div class="u-row" style="margin-top: var(--space-3);">
+        <span class="chip">Vegetarian</span>
+        <span class="chip">Wood-fired</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="sg-section">
+    <h2>Chips</h2>
+    <div class="u-row">
+      <span class="chip">Spicy</span>
+      <span class="chip">Gluten-free</span>
+      <span class="chip">Chef's pick</span>
+    </div>
+  </section>
+
+  <section class="sg-section">
+    <h2>Form controls</h2>
+    <div class="u-stack" style="max-width: 320px;">
+      <div class="field">
+        <label class="field-label" for="sg-name">Name</label>
+        <input class="input" id="sg-name" type="text" placeholder="Your name" />
+      </div>
+      <div class="field">
+        <label class="field-label" for="sg-notes">Delivery notes</label>
+        <input class="input" id="sg-notes" type="text" placeholder="e.g. extra napkins" />
+      </div>
+    </div>
+  </section>
+
+  <section class="sg-section">
+    <h2>Text utilities</h2>
+    <p class="u-text-sm">u-text-sm — small utility text.</p>
+    <p class="u-text-md">u-text-md — default utility text.</p>
+    <p class="u-text-lg">u-text-lg — large utility heading text.</p>
+    <p class="u-text-md u-text-muted">u-text-muted — supporting/secondary text.</p>
+  </section>
+
+</body>
+</html>
