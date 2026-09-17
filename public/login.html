@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Log in — Slice House</title>
+<link rel="stylesheet" href="/design-system/tokens.css" />
+<link rel="stylesheet" href="/design-system/prototype-utils.css" />
+<link rel="stylesheet" href="/css/app.css" />
+</head>
+<body class="u-surface">
+
+  <div class="brand-header">
+    <div class="brand-mark">S</div>
+    <div class="brand-name">Slice House</div>
+  </div>
+
+  <main class="stage">
+    <div class="auth-card">
+      <div class="card u-stack">
+        <div>
+          <h1 class="card-title" style="margin-bottom: 4px;">Log in</h1>
+          <p class="u-text-sm u-text-muted">Welcome back to Slice House.</p>
+        </div>
+
+        <div class="banner banner-success" id="login-reset-banner" style="display:none;">
+          Your password has been updated. Log in with your new password below.
+        </div>
+
+        <form class="u-stack" id="login-form">
+          <div class="field">
+            <label class="field-label" for="login-email">Email or mobile number</label>
+            <input class="input" id="login-email" type="text" placeholder="you@example.com" />
+          </div>
+          <div class="field">
+            <label class="field-label" for="login-password">Password</label>
+            <input class="input" id="login-password" type="password" placeholder="••••••••" />
+          </div>
+          <p class="field-error" id="login-error" style="display:none;"></p>
+          <div class="u-row" style="justify-content: space-between;">
+            <button type="button" class="link-button" id="forgot-password-link">Forgot password?</button>
+          </div>
+          <button type="submit" class="btn btn-primary">Log in</button>
+        </form>
+
+        <div class="divider">or</div>
+
+        <button type="button" class="btn btn-secondary" title="Not simulated in this prototype — shown for context on the Facebook account scenario.">
+          Continue with Facebook
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <script src="/js/login.js"></script>
+</body>
+</html>

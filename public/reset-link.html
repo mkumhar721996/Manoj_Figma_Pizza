@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Reset via email link — Slice House</title>
+<link rel="stylesheet" href="/design-system/tokens.css" />
+<link rel="stylesheet" href="/design-system/prototype-utils.css" />
+<link rel="stylesheet" href="/css/app.css" />
+</head>
+<body class="u-surface">
+
+  <div class="brand-header">
+    <div class="brand-mark">S</div>
+    <div class="brand-name">Slice House</div>
+  </div>
+
+  <main class="stage">
+    <div class="auth-card u-stack">
+
+      <div class="card u-stack state-block" data-state="valid" id="reset-link-valid">
+        <h1 class="card-title" style="margin-bottom: 4px;">Link verified</h1>
+        <p class="u-text-md">Your password reset link is valid. Continue to set a new password.</p>
+        <button type="button" class="btn btn-primary" id="reset-link-continue">Continue</button>
+      </div>
+
+      <div class="card u-stack state-block" data-state="expired" id="reset-link-expired">
+        <div class="banner banner-error">This password reset link has expired. Reset links are valid for 1 hour.</div>
+        <a class="btn btn-primary" href="/forgot-password.html" style="text-decoration:none; text-align:center;">Request a new reset link</a>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="/js/resetLink.js"></script>
+</body>
+</html>

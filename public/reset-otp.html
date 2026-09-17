@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Enter your one-time code — Slice House</title>
+<link rel="stylesheet" href="/design-system/tokens.css" />
+<link rel="stylesheet" href="/design-system/prototype-utils.css" />
+<link rel="stylesheet" href="/css/app.css" />
+</head>
+<body class="u-surface">
+
+  <div class="brand-header">
+    <div class="brand-mark">S</div>
+    <div class="brand-name">Slice House</div>
+  </div>
+
+  <main class="stage">
+    <div class="auth-card u-stack">
+
+      <div class="card u-stack state-block is-active" data-state="entry" id="otp-entry">
+        <h1 class="card-title" style="margin-bottom: 4px;">Enter your one-time code</h1>
+        <p class="u-text-sm u-text-muted">We texted a 6-digit code to your registered mobile number. Codes expire after 5 minutes.</p>
+        <form class="u-stack" id="otp-form">
+          <div class="field">
+            <label class="field-label" for="otp-value">6-digit code</label>
+            <input class="input otp-input" id="otp-value" type="text" inputmode="numeric" maxlength="6" placeholder="000000" />
+            <p class="field-error" id="otp-error" style="display:none;"></p>
+          </div>
+          <button type="submit" class="btn btn-primary">Verify code</button>
+        </form>
+        <a class="link-button" href="/forgot-password.html" style="align-self:flex-start; text-decoration: underline;">Send a new code</a>
+      </div>
+
+      <div class="card u-stack state-block" data-state="expired" id="otp-expired">
+        <div class="banner banner-error">This code has expired. OTP codes are valid for 5 minutes.</div>
+        <a class="btn btn-primary" href="/forgot-password.html" style="text-decoration:none; text-align:center;">Send a new code</a>
+      </div>
+
+      <div class="card u-stack state-block" data-state="locked" id="otp-locked">
+        <div class="banner banner-error">You've entered an incorrect code 3 times. This code is now locked and can no longer be used.</div>
+        <a class="btn btn-primary" href="/forgot-password.html" style="text-decoration:none; text-align:center;">Request a new code</a>
+      </div>
+
+      <div class="card u-stack state-block" data-state="invalidated" id="otp-invalidated">
+        <div class="banner banner-error">This code is no longer valid because the other reset method for this request was already used.</div>
+        <a class="btn btn-primary" href="/forgot-password.html" style="text-decoration:none; text-align:center;">Request a new code</a>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="/js/resetOtp.js"></script>
+</body>
+</html>

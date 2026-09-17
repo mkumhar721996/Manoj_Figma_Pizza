@@ -1,0 +1,82 @@
+/* Shared page-shell styling for the password-reset flow, built from design tokens only. */
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { padding-bottom: var(--space-4); }
+
+.brand-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-3) 0 var(--space-3);
+}
+.brand-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-lg);
+  background-color: var(--color-primary);
+  color: var(--color-primary-fg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+}
+.brand-name { font-size: var(--font-size-lg); font-weight: var(--font-weight-bold); color: var(--color-fg); }
+
+.stage { display: flex; justify-content: center; padding: var(--space-4) var(--space-3); }
+.auth-card { width: 100%; max-width: 420px; }
+
+.state-block { display: none; }
+.state-block.is-active { display: block; }
+
+.field-error { color: var(--color-primary); font-size: var(--font-size-sm); margin: 0; }
+.input.has-error { border-color: var(--color-primary); border-width: var(--border-width-md); }
+
+.link-button {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--color-primary);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-fg-muted);
+  font-size: var(--font-size-sm);
+}
+.divider::before, .divider::after {
+  content: "";
+  flex: 1;
+  height: var(--border-width-sm);
+  background-color: var(--color-border);
+}
+
+.banner { border-radius: var(--radius-md); padding: var(--space-3); font-size: var(--font-size-sm); line-height: var(--line-height-base); }
+.banner-success { background-color: var(--color-bg); border: var(--border-width-sm) solid var(--color-secondary); color: var(--color-secondary); }
+.banner-error { background-color: var(--color-bg); border: var(--border-width-sm) solid var(--color-primary); color: var(--color-primary); }
+.banner-info { background-color: var(--color-bg); border: var(--border-width-sm) solid var(--color-border-strong); color: var(--color-fg-muted); }
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  background-color: var(--color-secondary);
+  color: var(--color-secondary-fg);
+}
+
+.otp-input { font-size: var(--font-size-lg); letter-spacing: 8px; text-align: center; }
+
+.policy-list { margin: 0; padding-left: var(--space-4); color: var(--color-fg-muted); font-size: var(--font-size-sm); }
+.policy-list li { margin-bottom: 2px; }
