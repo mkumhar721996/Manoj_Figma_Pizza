@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MANOJ-FIGMA-PIZZA-STORY-027 — Password Reset — Design Prototype</title>
+
+<!-- Project design system: linked, not inlined, per design-system-bootstrap output -->
+<style>
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+:root {
+  --color-fg: #2b1b12; /** Primary body text color. Espresso brown, ~15.7:1 contrast on color-bg. */
+  --color-fg-muted: #6b5546; /** Secondary/supporting text color. */
+  --color-bg: #fff8f0; /** Page background. Warm cream. */
+  --color-surface: #ffffff; /** Raised surface background for cards and inputs. */
+  --color-primary: #c1272d; /** Brand tomato-red, used for primary actions. */
+  --color-primary-hover: #9e1f24; /** Hover/active state for primary actions. */
+  --color-primary-fg: #ffffff; /** Text/icon color on top of color-primary. */
+  --color-secondary: #2b6a4f; /** Basil-green accent for secondary emphasis. */
+  --color-secondary-fg: #ffffff; /** Text/icon color on top of color-secondary. */
+  --color-accent: #f2a541; /** Cheese-yellow accent for chips and highlights. */
+  --color-accent-fg: #3d2b0f; /** Text/icon color on top of color-accent. */
+  --color-border: #e0d3c2; /** Default hairline border color. */
+  --color-border-strong: #c9b8a0; /** Emphasized border color, e.g. for focus/hover outlines. */
+  --color-shadow: rgba(0, 0, 0, 0.16); /** Base tint used to build elevation shadows. */
+  --space-1: 4px; /** Smallest spacing step, used for tight gaps. */
+  --space-2: 8px; /** Compact padding/gap step. */
+  --space-3: 16px; /** Default padding/gap step. */
+  --space-4: 24px; /** Generous padding/gap step. */
+  --radius-sm: 4px; /** Corner radius for small controls (inputs, chips edges). */
+  --radius-md: 8px; /** Corner radius for buttons and cards. */
+  --radius-lg: 16px; /** Corner radius for large surfaces and pill-shaped chips. */
+  --font-size-sm: 14px; /** Small text size, e.g. captions and chips. */
+  --font-size-md: 16px; /** Body text size. */
+  --font-size-lg: 20px; /** Heading/emphasis text size. */
+  --border-width-sm: 1px; /** Hairline border width. */
+  --border-width-md: 2px; /** Emphasized border width, e.g. secondary button outline. */
+  --font-family-base: 'Inter', 'Helvetica Neue', Arial, sans-serif; /** Default UI typeface stack. */
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+  --line-height-base: 1.5; /** Unitless line-height for body copy. */
+  --shadow-sm: 0px 1px 2px 0px var(--color-shadow); /** Subtle elevation for resting cards and inputs. */
+  --shadow-md: 0px 4px 8px 0px var(--color-shadow); /** Elevation for hovered/raised surfaces. */
+  --border-default: var(--border-width-sm) solid var(--color-border); /** Default hairline border used on cards and inputs. */
+  --button-primary-background: var(--color-primary); /** Alias: primary button background. */
+  --button-primary-background-hover: var(--color-primary-hover); /** Alias: primary button hover background. */
+  --button-primary-foreground: var(--color-primary-fg); /** Alias: primary button text/icon color. */
+  --button-primary-radius: var(--radius-md); /** Alias: primary button corner radius. */
+  --button-secondary-background: var(--color-surface); /** Alias: secondary button background. */
+  --button-secondary-foreground: var(--color-primary); /** Alias: secondary button text/icon color. */
+  --button-secondary-border: var(--color-primary); /** Alias: secondary button border color. */
+  --card-default-background: var(--color-surface); /** Alias: card background. */
+  --card-default-border: var(--color-border); /** Alias: card border color. */
+  --card-default-radius: var(--radius-md); /** Alias: card corner radius. */
+  --chip-default-background: var(--color-accent); /** Alias: chip background. */
+  --chip-default-foreground: var(--color-accent-fg); /** Alias: chip text color. */
+  --chip-default-radius: var(--radius-lg); /** Alias: chip corner radius (pill-like). */
+  --input-default-background: var(--color-surface); /** Alias: form control background. */
+  --input-default-border: var(--color-border); /** Alias: form control border color. */
+  --input-default-foreground: var(--color-fg); /** Alias: form control text color. */
+  --input-default-radius: var(--radius-sm); /** Alias: form control corner radius. */
+}
+
+</style>
+<style>
+/* Prototype utility & component classes built entirely from design tokens. */
+
+/* Layout / spacing utilities */
+.u-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.u-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.u-gap-1 { gap: var(--space-1); }
+.u-gap-2 { gap: var(--space-2); }
+.u-gap-3 { gap: var(--space-3); }
+.u-gap-4 { gap: var(--space-4); }
+
+/* Typography utilities */
+.u-text-sm {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-base);
+}
+
+.u-text-md {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-base);
+}
+
+.u-text-lg {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-base);
+}
+
+.u-text-muted {
+  color: var(--color-fg-muted);
+}
+
+/* Base page surface */
+.u-surface {
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-family-base);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-3);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-base);
+  border-radius: var(--button-primary-radius);
+  border-width: var(--border-width-sm);
+  border-style: solid;
+  border-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-primary {
+  background-color: var(--button-primary-background);
+  color: var(--button-primary-foreground);
+  border-color: var(--button-primary-background);
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background-color: var(--button-primary-background-hover);
+  border-color: var(--button-primary-background-hover);
+}
+
+.btn-secondary {
+  background-color: var(--button-secondary-background);
+  color: var(--button-secondary-foreground);
+  border-width: var(--border-width-md);
+  border-style: solid;
+  border-color: var(--button-secondary-border);
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus-visible {
+  background-color: var(--color-bg);
+}
+
+/* Card */
+.card {
+  background-color: var(--card-default-background);
+  border-width: var(--border-width-sm);
+  border-style: solid;
+  border-color: var(--card-default-border);
+  border-radius: var(--card-default-radius);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-sm);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.card-title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-fg);
+  margin: 0 0 var(--space-2) 0;
+}
+
+.card-body {
+  font-size: var(--font-size-md);
+  color: var(--color-fg-muted);
+  margin: 0;
+}
+
+/* Chip */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1) var(--space-2);
+  background-color: var(--chip-default-background);
+  color: var(--chip-default-foreground);
+  border-radius: var(--chip-default-radius);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+}
+
+/* Form controls */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.field-label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-fg);
+}
+
+.input {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md);
+  padding: var(--space-2) var(--space-3);
+  background-color: var(--input-default-background);
+  color: var(--input-default-foreground);
+  border-width: var(--border-width-sm);
+  border-style: solid;
+  border-color: var(--input-default-border);
+  border-radius: var(--input-default-radius);
+}
+
+.input:focus-visible {
+  outline: none;
+  border-color: var(--color-primary);
+  border-width: var(--border-width-md);
+}
+
+.input::placeholder {
+  color: var(--color-fg-muted);
+}
+
+</style>
+
+<style>
+  /*
+    Page-specific styling only. All values reference design tokens from
+    tokens.css — no hardcoded colors, fonts, or sizes.
+
+    Reviewer note: tokens.json has no dedicated "error" / "success" / "warning"
+    semantic colors. This prototype reuses color-primary (tomato-red) for
+    error/danger states and color-secondary (basil-green) for success states,
+    since those already carry the right connotation and no new tokens were
+    invented. Flagging this for sdlc.design-system-bootstrap in case a future
+    story wants first-class status tokens.
+  */
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    padding-bottom: var(--space-4);
+  }
+
+  /* ---------- Reviewer bar (always present, canonical prev/next) ---------- */
+  .reviewer-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-2) var(--space-4);
+    background-color: var(--color-fg);
+    color: var(--color-primary-fg);
+    box-shadow: var(--shadow-md);
+    font-family: var(--font-family-base);
+  }
+
+  .reviewer-bar .rb-title {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    opacity: 0.7;
+    white-space: nowrap;
+  }
+
+  .reviewer-bar select {
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-sm);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+    border: var(--border-width-sm) solid var(--color-border-strong);
+    background-color: var(--color-surface);
+    color: var(--color-fg);
+    flex: 1;
+    min-width: 0;
+  }
+
+  .reviewer-bar button.rb-nav {
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-sm);
+    border: var(--border-width-sm) solid var(--color-primary-fg);
+    background: transparent;
+    color: var(--color-primary-fg);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .reviewer-bar button.rb-nav:hover {
+    background-color: var(--color-primary-hover);
+  }
+
+  .rb-notes-toggle {
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-sm);
+    color: var(--color-accent);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    white-space: nowrap;
+  }
+
+  .rb-notes-panel {
+    display: none;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: var(--space-3) var(--space-4);
+    background-color: var(--color-accent);
+    color: var(--color-accent-fg);
+    font-size: var(--font-size-sm);
+  }
+  .rb-notes-panel.is-open { display: block; }
+  .rb-notes-panel ul { margin: var(--space-1) 0 0 0; padding-left: var(--space-4); }
+  .rb-notes-panel li { margin-bottom: var(--space-1); }
+
+  /* ---------- App shell (no persistent nav: pre-login / auth flow) ---------- */
+  /*
+    Reviewer note: these screens are all pre-authentication (login + password
+    reset), so there is no app sidebar/nav — consistent with how auth flows
+    are shown standalone before a user reaches the main app shell.
+  */
+  .brand-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-4) var(--space-3) 0 var(--space-3);
+  }
+  .brand-mark {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-lg);
+    background-color: var(--color-primary);
+    color: var(--color-primary-fg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+  }
+  .brand-name {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-fg);
+  }
+
+  .stage {
+    display: flex;
+    justify-content: center;
+    padding: var(--space-4) var(--space-3);
+  }
+
+  .auth-card {
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .screen { display: none; }
+  .screen.is-active { display: block; }
+
+  .state-block { display: none; }
+  .state-block.is-active { display: block; }
+
+  /* ---------- Shared bits ---------- */
+  .field-error {
+    color: var(--color-primary);
+    font-size: var(--font-size-sm);
+    margin: 0;
+  }
+
+  .input.has-error {
+    border-color: var(--color-primary);
+    border-width: var(--border-width-md);
+  }
+
+  .link-button {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--color-primary);
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--color-fg-muted);
+    font-size: var(--font-size-sm);
+  }
+  .divider::before, .divider::after {
+    content: "";
+    flex: 1;
+    height: var(--border-width-sm);
+    background-color: var(--color-border);
+  }
+
+  .banner {
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-base);
+  }
+  .banner-success {
+    background-color: var(--color-bg);
+    border: var(--border-width-sm) solid var(--color-secondary);
+    color: var(--color-secondary);
+  }
+  .banner-error {
+    background-color: var(--color-bg);
+    border: var(--border-width-sm) solid var(--color-primary);
+    color: var(--color-primary);
+  }
+  .banner-info {
+    background-color: var(--color-bg);
+    border: var(--border-width-sm) solid var(--color-border-strong);
+    color: var(--color-fg-muted);
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px var(--space-2);
+    border-radius: var(--radius-lg);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    background-color: var(--color-secondary);
+    color: var(--color-secondary-fg);
+  }
+
+  .otp-input {
+    font-size: var(--font-size-lg);
+    letter-spacing: 8px;
+    text-align: center;
+  }
+
+  .policy-list {
+    margin: 0;
+    padding-left: var(--space-4);
+    color: var(--color-fg-muted);
+    font-size: var(--font-size-sm);
+  }
+  .policy-list li { margin-bottom: 2px; }
+
+  /* Reviewer-only demo aids: visually distinct dashed "not real UI" styling */
+  .demo-aid {
+    border: var(--border-width-md) dashed var(--color-border-strong);
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
+    background-color: var(--color-bg);
+  }
+  .demo-aid-label {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-fg-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 var(--space-2) 0;
+  }
+  .demo-chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+  .demo-chip {
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-sm);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-lg);
+    border: var(--border-width-sm) solid var(--color-border-strong);
+    background-color: var(--color-surface);
+    color: var(--color-fg);
+    cursor: pointer;
+  }
+  .demo-chip:hover { background-color: var(--color-bg); }
+  .demo-chip.is-selected {
+    background-color: var(--color-secondary);
+    color: var(--color-secondary-fg);
+    border-color: var(--color-secondary);
+  }
+
+  .callout {
+    border-radius: var(--radius-md);
+    border: var(--border-width-sm) dashed var(--color-border-strong);
+    background-color: var(--color-bg);
+    padding: var(--space-3);
+    font-size: var(--font-size-sm);
+    color: var(--color-fg-muted);
+    font-style: italic;
+  }
+  .callout strong { color: var(--color-fg); font-style: normal; }
+</style>
+</head>
+<body class="u-surface">
+
+  <!-- ================= Reviewer bar (canonical prev/next + screen label) ================= -->
+  <div class="reviewer-bar">
+    <span class="rb-title">MANOJ-FIGMA-PIZZA-STORY-027</span>
+    <button type="button" class="rb-nav" id="rb-prev" onclick="rbStep(-1)">‹ Prev</button>
+    <select id="rb-select" onchange="rbJump(this.value)"></select>
+    <button type="button" class="rb-nav" id="rb-next" onclick="rbStep(1)">Next ›</button>
+    <button type="button" class="rb-notes-toggle" onclick="toggleNotes()">Design notes</button>
+  </div>
+  <div class="rb-notes-panel" id="rb-notes-panel">
+    <strong>Design notes for reviewers</strong>
+    <ul>
+      <li><strong>Facebook accounts (AC9):</strong> chosen approach is Option (a) — a Facebook-originated account sets an app-managed password for the <em>first time</em> via this same reset flow, which then coexists with Facebook Login. Alternative considered: an account-unlink/recovery flow, rejected here as more disruptive for a "regain access" story. Needs explicit product sign-off before build — see the callout on the "Set new password" screen (Facebook variant).</li>
+      <li><strong>AC10 / AC16 (no enumeration):</strong> the "request sent" confirmation screen shows an identical generic message whether the identifier is registered, unregistered, or has hit the 5-requests/hour cap. See the callout on that screen for what happens silently in each case.</li>
+      <li><strong>AC15 (mutual invalidation):</strong> the "Set new password" screen shows a note naming whichever method (link or OTP) was <em>not</em> used, confirming it's now invalid.</li>
+      <li>No dedicated error/success/warning tokens exist in tokens.json — this prototype reuses color-primary for error and color-secondary for success. Flagging in case first-class status tokens are wanted later.</li>
+    </ul>
+  </div>
+
+  <div class="brand-header">
+    <div class="brand-mark">S</div>
+    <div class="brand-name">Slice House</div>
+  </div>
+
+  <main class="stage">
+    <div class="auth-card">
+
+      <!-- ============================================================ -->
+      <!-- Screen: Login. Entry point. Satisfies AC1 (Forgot password link) and AC8 (login with new password). -->
+      <!-- ============================================================ -->
+      <section class="screen" data-screen="login" data-title="1. Login">
+        <div class="card u-stack">
+          <div>
+            <h1 class="card-title" style="margin-bottom: 4px;">Log in</h1>
+            <p class="u-text-sm u-text-muted">Welcome back to Slice House.</p>
+          </div>
+
+          <!-- State: post-reset banner, shown only after completing the reset flow (AC8) -->
+          <div class="banner banner-success" id="login-reset-banner" style="display:none;">
+            Your password has been updated. Log in with your new password below.
+          </div>
+
+          <form class="u-stack" onsubmit="return handleLogin(event)">
+            <div class="field">
+              <label class="field-label" for="login-email">Email or mobile number</label>
+              <input class="input" id="login-email" type="text" placeholder="you@example.com" />
+            </div>
+            <div class="field">
+              <label class="field-label" for="login-password">Password</label>
+              <input class="input" id="login-password" type="password" placeholder="••••••••" />
+            </div>
+            <div class="u-row" style="justify-content: space-between;">
+              <button type="button" class="link-button" onclick="goForgotPassword()">Forgot password?</button>
+            </div>
+            <button type="submit" class="btn btn-primary">Log in</button>
+          </form>
+
+          <div class="divider">or</div>
+
+          <button type="button" class="btn btn-secondary" title="Not simulated in this prototype — shown for context on the Facebook account scenario.">
+            Continue with Facebook
+          </button>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- Screen: Forgot Password — Enter Identifier. Satisfies AC1. -->
+      <!-- The scenario chips below are a reviewer aid only (dashed border), not part of the live product UI. -->
+      <!-- ============================================================ -->
+      <section class="screen" data-screen="forgot-request" data-title="2. Forgot Password — Enter Identifier">
+        <div class="u-stack">
+          <div class="card u-stack">
+            <div>
+              <h1 class="card-title" style="margin-bottom: 4px;">Reset your password</h1>
+              <p class="u-text-sm u-text-muted">Enter your registered email or mobile number. We'll send you a reset link and a one-time code.</p>
+            </div>
+            <form class="u-stack" onsubmit="return handleForgotSubmit(event)">
+              <div class="field">
+                <label class="field-label" for="forgot-identifier">Email or mobile number</label>
+                <input class="input" id="forgot-identifier" type="text" placeholder="you@example.com or +1 415 555 0100" />
+              </div>
+              <button type="submit" class="btn btn-primary">Send reset instructions</button>
+              <button type="button" class="link-button" onclick="goTo('login')" style="align-self:flex-start;">Back to log in</button>
+            </form>
+          </div>
+
+          <div class="demo-aid">
+            <p class="demo-aid-label">Reviewer aid — pick a scenario, not shown to real users</p>
+            <div class="demo-chip-row" id="scenario-chips">
+              <button type="button" class="demo-chip is-selected" data-scenario="registered-email" onclick="pickScenario('registered-email')">Registered · email</button>
+              <button type="button" class="demo-chip" data-scenario="registered-mobile" onclick="pickScenario('registered-mobile')">Registered · mobile</button>
+              <button type="button" class="demo-chip" data-scenario="facebook" onclick="pickScenario('facebook')">Facebook-originated account</button>
+              <button type="button" class="demo-chip" data-scenario="unregistered" onclick="pickScenario('unregistered')">Unregistered identifier (AC10)</button>
+              <button type="button" class="demo-chip" data-scenario="rate-limited" onclick="pickScenario('rate-limited')">5+ requests this hour (AC16)</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- Screen: Forgot Password — Request Sent. Satisfies AC2, AC3, AC10, AC16 (generic message, no enumeration). -->
+      <!-- ============================================================ -->
+      <section class="screen" data-screen="forgot-sent" data-title="3. Forgot Password — Request Sent">
+        <div class="u-stack">
+          <div class="card u-stack">
+            <h1 class="card-title" style="margin-bottom: 4px;">Check your email and phone</h1>
+            <p class="u-text-md">
+              If <strong id="sent-identifier">the identifier you entered</strong> matches a registered account,
+              we've sent a password reset link to the email on file and a 6-digit one-time code by SMS.
+              Both are valid for a limited time.
+            </p>
+            <p class="u-text-sm u-text-muted">Didn't get anything? Check your spam folder, or wait a few minutes and try again.</p>
+
+            <div class="u-stack">
+              <button type="button" class="btn btn-primary" onclick="goTo('reset-link')">I clicked the email link</button>
+              <button type="button" class="btn btn-secondary" onclick="goTo('reset-otp')">Enter the code from SMS instead</button>
+            </div>
+            <button type="button" class="link-button" onclick="goTo('login')" style="align-self:flex-start;">Back to log in</button>
+          </div>
+
+          <div class="callout" id="sent-callout-unregistered" style="display:none;">
+            <strong>Design note (AC10):</strong> this identifier isn't tied to any account. The message above is
+            identical to the registered case on purpose — no email or SMS is actually sent, but the user can't
+            tell that from the UI, so account existence isn't leaked.
+          </div>
+          <div class="callout" id="sent-callout-rate-limited" style="display:none;">
+            <strong>Design note (AC16):</strong> this identifier already had 5 reset requests in the past hour.
+            The same generic confirmation is shown, but no new link or OTP is issued for this request — the
+            previously issued ones (if still valid) remain the only usable ones.
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- Screen: Reset via Email Link. Satisfies AC4 (valid link → set new password) and AC11 (expired link rejected). -->
+      <!-- ============================================================ -->
+      <section class="screen" data-screen="reset-link" data-title="4. Reset via Email Link">
+        <div class="u-stack">
+          <div class="demo-aid">
+            <p class="demo-aid-label">Reviewer aid — simulate link age</p>
+            <div class="demo-chip-row">
+              <button type="button" class="demo-chip" onclick="showState('reset-link','valid')">Link clicked within 1 hour</button>
+              <button type="button" class="demo-chip" onclick="showState('reset-link','expired')">Link clicked after 1 hour (AC11)</button>
+            </div>
+          </div>
+
+          <!-- State: valid -->
+          <div class="card u-stack state-block" data-state="valid">
+            <h1 class="card-title" style="margin-bottom: 4px;">Link verified</h1>
+            <p class="u-text-md">Your password reset link is valid. Continue to set a new password.</p>
+            <button type="button" class="btn btn-primary" onclick="resetMethodUsed='link'; enterSetPassword();">Continue</button>
+          </div>
+
+          <!-- State: expired -->
+          <div class="card u-stack state-block" data-state="expired">
+            <div class="banner banner-error">This password reset link has expired. Reset links are valid for 1 hour.</div>
+            <button type="button" class="btn btn-primary" onclick="goTo('forgot-request')">Request a new reset link</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- Screen: Reset via OTP. Satisfies AC5 (correct OTP → set new password), AC6 (incorrect OTP rejected), -->
+      <!-- AC12 (expired OTP rejected), AC13 (lockout after 3 incorrect attempts). -->
+      <!-- ============================================================ -->
+      <section class="screen" data-screen="reset-otp" data-title="5. Reset via OTP">
+        <div class="u-stack">
+
+          <!-- State: entry (covers default entry + inline incorrect-code error, AC6) -->
+          <div class="card u-stack state-block is-active" data-state="entry">
+            <h1 class="card-title" style="margin-bottom: 4px;">Enter your one-time code</h1>
+            <p class="u-text-sm u-text-muted">We texted a 6-digit code to your registered mobile number. Codes expire after 5 minutes.</p>
+            <form class="u-stack" onsubmit="return handleOtpSubmit(event)">
+              <div class="field">
+                <label class="field-label" for="otp-value">6-digit code</label>
+                <input class="input otp-input" id="otp-value" type="text" inputmode="numeric" maxlength="6" placeholder="000000" />
+                <p class="field-error" id="otp-error" style="display:none;"></p>
+              </div>
+              <button type="submit" class="btn btn-primary">Verify code</button>
+            </form>
+            <button type="button" class="link-button" onclick="goTo('forgot-request')" style="align-self:flex-start;">Send a new code</button>
+          </div>
+
+          <!-- State: expired -->
+          <div class="card u-stack state-block" data-state="expired">
+            <div class="banner banner-error">This code has expired. OTP codes are valid for 5 minutes.</div>
+            <button type="button" class="btn btn-primary" onclick="goTo('forgot-request')">Send a new code</button>
+          </div>
+
+          <!-- State: locked -->
+          <div class="card u-stack state-block" data-state="locked">
+            <div class="banner banner-error">You've entered an incorrect code 3 times. This code is now locked and can no longer be used.</div>
+            <button type="button" class="btn btn-primary" onclick="otpAttempts=0; goTo('forgot-request')">Request a new code</button>
+          </div>
+
+          <div class="demo-aid">
+            <p class="demo-aid-label">Reviewer aid — fill a sample code</p>
+            <div class="demo-chip-row">
+              <button type="button" class="demo-chip" onclick="document.getElementById('otp-value').value='482913'">Fill correct code</button>
+              <button type="button" class="demo-chip" onclick="document.getElementById('otp-value').value='000000'">Fill incorrect code</button>
+              <button type="button" class="demo-chip" onclick="showState('reset-otp','expired')">Simulate expired code (AC12)</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- Screen: Set New Password. Satisfies AC4/AC5 destination, AC7 (password updated), AC9 (Facebook first-time app password), -->
+      <!-- AC14 (policy validation), AC15 (other method invalidated note). -->
+      <!-- ============================================================ -->
+      <section class="screen" data-screen="set-password" data-title="6. Set New Password">
+        <div class="u-stack">
+
+          <!-- State: form (shared markup, header text swapped for the Facebook variant) -->
+          <div class="card u-stack state-block is-active" data-state="form">
+            <div>
+              <span class="badge" id="set-password-badge" style="display:none;">Facebook-originated account</span>
+              <h1 class="card-title" style="margin: 4px 0;" id="set-password-title">Set a new password</h1>
+              <p class="u-text-sm u-text-muted" id="set-password-subtitle">Choose a new password for your account.</p>
+            </div>
+
+            <div class="banner banner-info" id="invalidated-method-note"></div>
+
+            <form class="u-stack" onsubmit="return handleSetPassword(event)">
+              <div class="field">
+                <label class="field-label" for="new-password">New password</label>
+                <input class="input" id="new-password" type="password" placeholder="••••••••" />
+              </div>
+              <div class="field">
+                <label class="field-label" for="confirm-password">Confirm new password</label>
+                <input class="input" id="confirm-password" type="password" placeholder="••••••••" />
+              </div>
+              <ul class="policy-list">
+                <li>At least 8 characters</li>
+                <li>At least one uppercase and one lowercase letter</li>
+                <li>At least one number</li>
+              </ul>
+              <p class="field-error" id="set-password-error" style="display:none;"></p>
+              <button type="submit" class="btn btn-primary" id="set-password-submit">Update password</button>
+            </form>
+
+            <div class="demo-aid">
+              <p class="demo-aid-label">Reviewer aid — fill a sample password</p>
+              <div class="demo-chip-row">
+                <button type="button" class="demo-chip" onclick="fillPassword('abc123')">Fill weak example (AC14)</button>
+                <button type="button" class="demo-chip" onclick="fillPassword('SliceHouse2024')">Fill strong example</button>
+              </div>
+            </div>
+
+            <div class="callout" id="facebook-callout" style="display:none;">
+              <strong>Design decision needed (AC9):</strong> this account originally signed up via Facebook and has
+              no app-managed password. This prototype has the user set one here, which will then coexist with
+              Facebook Login as an alternate way in. An account-unlink/recovery flow was considered but rejected
+              as too disruptive for a "regain access" story — please confirm this direction before implementation.
+            </div>
+          </div>
+
+          <!-- State: success -->
+          <div class="card u-stack state-block" data-state="success">
+            <div class="banner banner-success">Your password has been updated.</div>
+            <p class="u-text-sm u-text-muted" id="success-invalidated-note"></p>
+            <p class="u-text-sm u-text-muted" id="success-facebook-note" style="display:none;">You can still log in with Facebook, or use your new password directly, going forward.</p>
+            <button type="button" class="btn btn-primary" onclick="finishReset()">Continue to log in</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- Screen: Login — Success. Satisfies AC8 (log in with new password grants access). -->
+      <!-- ============================================================ -->
+      <section class="screen" data-screen="login-success" data-title="7. Login — Success">
+        <div class="card u-stack">
+          <div class="banner banner-success" id="login-success-banner">You're logged in.</div>
+          <h1 class="card-title" style="margin-bottom: 4px;">Welcome back!</h1>
+          <p class="u-text-sm u-text-muted">This is a placeholder confirmation — the rest of the app is out of scope for this story.</p>
+          <button type="button" class="btn btn-secondary" onclick="resetPrototype()">Restart prototype</button>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+<script>
+  // ---------------------------------------------------------------------
+  // Fixture data (inline, no backend)
+  // ---------------------------------------------------------------------
+  const FIXTURES = {
+    correctOtp: '482913',
+    passwordPolicy: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/,
+    scenarios: {
+      'registered-email':  { identifier: 'jordan.baker@example.com', facebook: false },
+      'registered-mobile': { identifier: '+1 415 555 0132',          facebook: false },
+      'facebook':          { identifier: 'morgan.lee@example.com',   facebook: true  },
+      'unregistered':      { identifier: 'unknown@example.com',      facebook: false },
+      'rate-limited':      { identifier: 'sam.rivera@example.com',   facebook: false },
+    },
+  };
+
+  let currentScenario = 'registered-email';
+  let otpAttempts = 0;
+  let resetMethodUsed = null; // 'link' | 'otp'
+
+  // ---------------------------------------------------------------------
+  // Reviewer bar: canonical prev/next + jump-to-screen
+  // ---------------------------------------------------------------------
+  const SCREEN_ORDER = ['login', 'forgot-request', 'forgot-sent', 'reset-link', 'reset-otp', 'set-password', 'login-success'];
+  let rbIndex = 0;
+
+  function initReviewerBar() {
+    const select = document.getElementById('rb-select');
+    SCREEN_ORDER.forEach((id) => {
+      const section = document.querySelector('[data-screen="' + id + '"]');
+      const opt = document.createElement('option');
+      opt.value = id;
+      opt.textContent = section.dataset.title;
+      select.appendChild(opt);
+    });
+    goTo('login');
+  }
+
+  function rbStep(delta) {
+    rbIndex = Math.max(0, Math.min(SCREEN_ORDER.length - 1, rbIndex + delta));
+    goTo(SCREEN_ORDER[rbIndex]);
+  }
+
+  function rbJump(id) {
+    goTo(id);
+  }
+
+  function toggleNotes() {
+    document.getElementById('rb-notes-panel').classList.toggle('is-open');
+  }
+
+  function goTo(id) {
+    document.querySelectorAll('.screen').forEach((el) => el.classList.remove('is-active'));
+    const target = document.querySelector('[data-screen="' + id + '"]');
+    target.classList.add('is-active');
+
+    // reset each screen's internal state to its default whenever we land on it via nav
+    if (id === 'reset-link') showState('reset-link', 'valid');
+    if (id === 'reset-otp') { otpAttempts = 0; showState('reset-otp', 'entry'); resetOtpForm(); }
+    if (id === 'set-password') showState('set-password', 'form');
+
+    rbIndex = SCREEN_ORDER.indexOf(id);
+    document.getElementById('rb-select').value = id;
+    document.getElementById('rb-prev').disabled = rbIndex <= 0;
+    document.getElementById('rb-next').disabled = rbIndex >= SCREEN_ORDER.length - 1;
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+
+  function showState(screenId, stateName) {
+    const screen = document.querySelector('[data-screen="' + screenId + '"]');
+    screen.querySelectorAll('.state-block').forEach((el) => el.classList.remove('is-active'));
+    screen.querySelector('[data-state="' + stateName + '"]').classList.add('is-active');
+  }
+
+  // ---------------------------------------------------------------------
+  // Screen: Login
+  // ---------------------------------------------------------------------
+  function goForgotPassword() {
+    goTo('forgot-request');
+  }
+
+  function handleLogin(evt) {
+    evt.preventDefault();
+    const banner = document.getElementById('login-reset-banner');
+    const wasPostReset = banner.style.display !== 'none';
+    setTimeout(() => {
+      document.getElementById('login-success-banner').textContent = wasPostReset
+        ? "You're logged in with your new password."
+        : "You're logged in.";
+      goTo('login-success');
+    }, 400);
+    return false;
+  }
+
+  // ---------------------------------------------------------------------
+  // Screen: Forgot Password — Enter Identifier
+  // ---------------------------------------------------------------------
+  function pickScenario(scenario) {
+    currentScenario = scenario;
+    document.querySelectorAll('#scenario-chips .demo-chip').forEach((chip) => {
+      chip.classList.toggle('is-selected', chip.dataset.scenario === scenario);
+    });
+    document.getElementById('forgot-identifier').value = FIXTURES.scenarios[scenario].identifier;
+  }
+
+  function handleForgotSubmit(evt) {
+    evt.preventDefault();
+    const input = document.getElementById('forgot-identifier');
+    const identifier = input.value.trim() || FIXTURES.scenarios[currentScenario].identifier;
+    document.getElementById('sent-identifier').textContent = identifier;
+    document.getElementById('sent-callout-unregistered').style.display = currentScenario === 'unregistered' ? 'block' : 'none';
+    document.getElementById('sent-callout-rate-limited').style.display = currentScenario === 'rate-limited' ? 'block' : 'none';
+    setTimeout(() => goTo('forgot-sent'), 500);
+    return false;
+  }
+
+  // ---------------------------------------------------------------------
+  // Screen: Reset via OTP
+  // ---------------------------------------------------------------------
+  function resetOtpForm() {
+    document.getElementById('otp-value').value = '';
+    document.getElementById('otp-value').classList.remove('has-error');
+    document.getElementById('otp-error').style.display = 'none';
+  }
+
+  function handleOtpSubmit(evt) {
+    evt.preventDefault();
+    const input = document.getElementById('otp-value');
+    const errorEl = document.getElementById('otp-error');
+    const value = input.value.trim();
+
+    if (value === FIXTURES.correctOtp) {
+      input.classList.remove('has-error');
+      errorEl.style.display = 'none';
+      resetMethodUsed = 'otp';
+      setTimeout(enterSetPassword, 400);
+      return false;
+    }
+
+    otpAttempts += 1;
+    if (otpAttempts >= 3) {
+      setTimeout(() => showState('reset-otp', 'locked'), 300);
+    } else {
+      input.classList.add('has-error');
+      errorEl.textContent = 'Incorrect code. ' + (3 - otpAttempts) + ' attempt(s) remaining before this code is locked.';
+      errorEl.style.display = 'block';
+    }
+    return false;
+  }
+
+  // ---------------------------------------------------------------------
+  // Screen: Set New Password
+  // ---------------------------------------------------------------------
+  function enterSetPassword() {
+    const isFacebook = FIXTURES.scenarios[currentScenario].facebook;
+    document.getElementById('set-password-badge').style.display = isFacebook ? 'inline-flex' : 'none';
+    document.getElementById('set-password-title').textContent = isFacebook ? 'Set an app password' : 'Set a new password';
+    document.getElementById('set-password-subtitle').textContent = isFacebook
+      ? "Your account was created using Facebook Login and doesn't have an app password yet. Set one below — it will work alongside Facebook Login."
+      : 'Choose a new password for your account.';
+    document.getElementById('facebook-callout').style.display = isFacebook ? 'block' : 'none';
+
+    const otherMethod = resetMethodUsed === 'link' ? 'one-time code sent via SMS' : 'password reset link sent via email';
+    const note = "For your security, the " + otherMethod + " for this request is now invalid.";
+    document.getElementById('invalidated-method-note').textContent = note;
+    document.getElementById('success-invalidated-note').textContent = note;
+    document.getElementById('success-facebook-note').style.display = isFacebook ? 'block' : 'none';
+
+    document.getElementById('new-password').value = '';
+    document.getElementById('confirm-password').value = '';
+    document.getElementById('set-password-error').style.display = 'none';
+
+    goTo('set-password');
+  }
+
+  function fillPassword(value) {
+    document.getElementById('new-password').value = value;
+    document.getElementById('confirm-password').value = value;
+  }
+
+  function handleSetPassword(evt) {
+    evt.preventDefault();
+    const pw = document.getElementById('new-password').value;
+    const confirm = document.getElementById('confirm-password').value;
+    const errorEl = document.getElementById('set-password-error');
+
+    let message = null;
+    if (pw !== confirm) {
+      message = "Passwords don't match. Please try again.";
+    } else if (!FIXTURES.passwordPolicy.test(pw)) {
+      message = "That password doesn't meet the requirements above. Please try again.";
+    }
+
+    if (message) {
+      errorEl.textContent = message;
+      errorEl.style.display = 'block';
+      return false;
+    }
+
+    errorEl.style.display = 'none';
+    setTimeout(() => showState('set-password', 'success'), 400);
+    return false;
+  }
+
+  function finishReset() {
+    document.getElementById('login-reset-banner').style.display = 'block';
+    document.getElementById('login-email').value = FIXTURES.scenarios[currentScenario].identifier;
+    document.getElementById('login-password').value = '';
+    goTo('login');
+  }
+
+  function resetPrototype() {
+    currentScenario = 'registered-email';
+    otpAttempts = 0;
+    resetMethodUsed = null;
+    document.getElementById('login-reset-banner').style.display = 'none';
+    document.getElementById('login-email').value = '';
+    document.getElementById('login-password').value = '';
+    document.getElementById('forgot-identifier').value = '';
+    pickScenario('registered-email');
+    goTo('login');
+  }
+
+  initReviewerBar();
+</script>
+
+</body>
+</html>
+
+<!-- arc:css-inlined -->
