@@ -1,0 +1,56 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+:root {
+  --color-fg: #2b1b12; /** Primary body text color. Espresso brown, ~15.7:1 contrast on color-bg. */
+  --color-fg-muted: #6b5546; /** Secondary/supporting text color. */
+  --color-bg: #fff8f0; /** Page background. Warm cream. */
+  --color-surface: #ffffff; /** Raised surface background for cards and inputs. */
+  --color-primary: #c1272d; /** Brand tomato-red, used for primary actions. */
+  --color-primary-hover: #9e1f24; /** Hover/active state for primary actions. */
+  --color-primary-fg: #ffffff; /** Text/icon color on top of color-primary. */
+  --color-secondary: #2b6a4f; /** Basil-green accent for secondary emphasis. */
+  --color-secondary-fg: #ffffff; /** Text/icon color on top of color-secondary. */
+  --color-accent: #f2a541; /** Cheese-yellow accent for chips and highlights. */
+  --color-accent-fg: #3d2b0f; /** Text/icon color on top of color-accent. */
+  --color-border: #e0d3c2; /** Default hairline border color. */
+  --color-border-strong: #c9b8a0; /** Emphasized border color, e.g. for focus/hover outlines. */
+  --color-shadow: rgba(0, 0, 0, 0.16); /** Base tint used to build elevation shadows. */
+  --space-1: 4px; /** Smallest spacing step, used for tight gaps. */
+  --space-2: 8px; /** Compact padding/gap step. */
+  --space-3: 16px; /** Default padding/gap step. */
+  --space-4: 24px; /** Generous padding/gap step. */
+  --radius-sm: 4px; /** Corner radius for small controls (inputs, chips edges). */
+  --radius-md: 8px; /** Corner radius for buttons and cards. */
+  --radius-lg: 16px; /** Corner radius for large surfaces and pill-shaped chips. */
+  --font-size-sm: 14px; /** Small text size, e.g. captions and chips. */
+  --font-size-md: 16px; /** Body text size. */
+  --font-size-lg: 20px; /** Heading/emphasis text size. */
+  --border-width-sm: 1px; /** Hairline border width. */
+  --border-width-md: 2px; /** Emphasized border width, e.g. secondary button outline. */
+  --font-family-base: 'Inter', 'Helvetica Neue', Arial, sans-serif; /** Default UI typeface stack. */
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+  --line-height-base: 1.5; /** Unitless line-height for body copy. */
+  --shadow-sm: 0px 1px 2px 0px var(--color-shadow); /** Subtle elevation for resting cards and inputs. */
+  --shadow-md: 0px 4px 8px 0px var(--color-shadow); /** Elevation for hovered/raised surfaces. */
+  --border-default: var(--border-width-sm) solid var(--color-border); /** Default hairline border used on cards and inputs. */
+  --button-primary-background: var(--color-primary); /** Alias: primary button background. */
+  --button-primary-background-hover: var(--color-primary-hover); /** Alias: primary button hover background. */
+  --button-primary-foreground: var(--color-primary-fg); /** Alias: primary button text/icon color. */
+  --button-primary-radius: var(--radius-md); /** Alias: primary button corner radius. */
+  --button-secondary-background: var(--color-surface); /** Alias: secondary button background. */
+  --button-secondary-foreground: var(--color-primary); /** Alias: secondary button text/icon color. */
+  --button-secondary-border: var(--color-primary); /** Alias: secondary button border color. */
+  --card-default-background: var(--color-surface); /** Alias: card background. */
+  --card-default-border: var(--color-border); /** Alias: card border color. */
+  --card-default-radius: var(--radius-md); /** Alias: card corner radius. */
+  --chip-default-background: var(--color-accent); /** Alias: chip background. */
+  --chip-default-foreground: var(--color-accent-fg); /** Alias: chip text color. */
+  --chip-default-radius: var(--radius-lg); /** Alias: chip corner radius (pill-like). */
+  --input-default-background: var(--color-surface); /** Alias: form control background. */
+  --input-default-border: var(--color-border); /** Alias: form control border color. */
+  --input-default-foreground: var(--color-fg); /** Alias: form control text color. */
+  --input-default-radius: var(--radius-sm); /** Alias: form control corner radius. */
+}

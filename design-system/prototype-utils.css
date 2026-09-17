@@ -1,0 +1,172 @@
+/* Prototype utility & component classes built entirely from design tokens. */
+
+/* Layout / spacing utilities */
+.u-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.u-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.u-gap-1 { gap: var(--space-1); }
+.u-gap-2 { gap: var(--space-2); }
+.u-gap-3 { gap: var(--space-3); }
+.u-gap-4 { gap: var(--space-4); }
+
+/* Typography utilities */
+.u-text-sm {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-base);
+}
+
+.u-text-md {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-base);
+}
+
+.u-text-lg {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-base);
+}
+
+.u-text-muted {
+  color: var(--color-fg-muted);
+}
+
+/* Base page surface */
+.u-surface {
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-family-base);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-3);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-base);
+  border-radius: var(--button-primary-radius);
+  border-width: var(--border-width-sm);
+  border-style: solid;
+  border-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-primary {
+  background-color: var(--button-primary-background);
+  color: var(--button-primary-foreground);
+  border-color: var(--button-primary-background);
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background-color: var(--button-primary-background-hover);
+  border-color: var(--button-primary-background-hover);
+}
+
+.btn-secondary {
+  background-color: var(--button-secondary-background);
+  color: var(--button-secondary-foreground);
+  border-width: var(--border-width-md);
+  border-style: solid;
+  border-color: var(--button-secondary-border);
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus-visible {
+  background-color: var(--color-bg);
+}
+
+/* Card */
+.card {
+  background-color: var(--card-default-background);
+  border-width: var(--border-width-sm);
+  border-style: solid;
+  border-color: var(--card-default-border);
+  border-radius: var(--card-default-radius);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-sm);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.card-title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-fg);
+  margin: 0 0 var(--space-2) 0;
+}
+
+.card-body {
+  font-size: var(--font-size-md);
+  color: var(--color-fg-muted);
+  margin: 0;
+}
+
+/* Chip */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1) var(--space-2);
+  background-color: var(--chip-default-background);
+  color: var(--chip-default-foreground);
+  border-radius: var(--chip-default-radius);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+}
+
+/* Form controls */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.field-label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-fg);
+}
+
+.input {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md);
+  padding: var(--space-2) var(--space-3);
+  background-color: var(--input-default-background);
+  color: var(--input-default-foreground);
+  border-width: var(--border-width-sm);
+  border-style: solid;
+  border-color: var(--input-default-border);
+  border-radius: var(--input-default-radius);
+}
+
+.input:focus-visible {
+  outline: none;
+  border-color: var(--color-primary);
+  border-width: var(--border-width-md);
+}
+
+.input::placeholder {
+  color: var(--color-fg-muted);
+}
