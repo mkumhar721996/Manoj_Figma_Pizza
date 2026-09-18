@@ -1,0 +1,11 @@
+{
+  "name": "manoj-figma-pizza",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Defect tracking application",
+  "scripts": {
+    "test": "node --test \"src/**/*.test.js\"",
+    "start": "node src/server.js"
+  }
+}
