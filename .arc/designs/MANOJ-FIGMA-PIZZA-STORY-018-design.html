@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MANOJ-FIGMA-PIZZA-STORY-018 — Attachment Management</title>
+<style>
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+:root {
+  --color-fg: #2b1b12; /** Primary body text color. Espresso brown, ~15.7:1 contrast on color-bg. */
+  --color-fg-muted: #6b5546; /** Secondary/supporting text color. */
+  --color-bg: #fff8f0; /** Page background. Warm cream. */
+  --color-surface: #ffffff; /** Raised surface background for cards and inputs. */
+  --color-primary: #c1272d; /** Brand tomato-red, used for primary actions. */
+  --color-primary-hover: #9e1f24; /** Hover/active state for primary actions. */
+  --color-primary-fg: #ffffff; /** Text/icon color on top of color-primary. */
+  --color-secondary: #2b6a4f; /** Basil-green accent for secondary emphasis. */
+  --color-secondary-fg: #ffffff; /** Text/icon color on top of color-secondary. */
+  --color-accent: #f2a541; /** Cheese-yellow accent for chips and highlights. */
+  --color-accent-fg: #3d2b0f; /** Text/icon color on top of color-accent. */
+  --color-border: #e0d3c2; /** Default hairline border color. */
+  --color-border-strong: #c9b8a0; /** Emphasized border color, e.g. for focus/hover outlines. */
+  --color-shadow: rgba(0, 0, 0, 0.16); /** Base tint used to build elevation shadows. */
+  --space-1: 4px; /** Smallest spacing step, used for tight gaps. */
+  --space-2: 8px; /** Compact padding/gap step. */
+  --space-3: 16px; /** Default padding/gap step. */
+  --space-4: 24px; /** Generous padding/gap step. */
+  --radius-sm: 4px; /** Corner radius for small controls (inputs, chips edges). */
+  --radius-md: 8px; /** Corner radius for buttons and cards. */
+  --radius-lg: 16px; /** Corner radius for large surfaces and pill-shaped chips. */
+  --font-size-sm: 14px; /** Small text size, e.g. captions and chips. */
+  --font-size-md: 16px; /** Body text size. */
+  --font-size-lg: 20px; /** Heading/emphasis text size. */
+  --border-width-sm: 1px; /** Hairline border width. */
+  --border-width-md: 2px; /** Emphasized border width, e.g. secondary button outline. */
+  --font-family-base: 'Inter', 'Helvetica Neue', Arial, sans-serif; /** Default UI typeface stack. */
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+  --line-height-base: 1.5; /** Unitless line-height for body copy. */
+  --shadow-sm: 0px 1px 2px 0px var(--color-shadow); /** Subtle elevation for resting cards and inputs. */
+  --shadow-md: 0px 4px 8px 0px var(--color-shadow); /** Elevation for hovered/raised surfaces. */
+  --border-default: var(--border-width-sm) solid var(--color-border); /** Default hairline border used on cards and inputs. */
+  --button-primary-background: var(--color-primary); /** Alias: primary button background. */
+  --button-primary-background-hover: var(--color-primary-hover); /** Alias: primary button hover background. */
+  --button-primary-foreground: var(--color-primary-fg); /** Alias: primary button text/icon color. */
+  --button-primary-radius: var(--radius-md); /** Alias: primary button corner radius. */
+  --button-secondary-background: var(--color-surface); /** Alias: secondary button background. */
+  --button-secondary-foreground: var(--color-primary); /** Alias: secondary button text/icon color. */
+  --button-secondary-border: var(--color-primary); /** Alias: secondary button border color. */
+  --card-default-background: var(--color-surface); /** Alias: card background. */
+  --card-default-border: var(--color-border); /** Alias: card border color. */
+  --card-default-radius: var(--radius-md); /** Alias: card corner radius. */
+  --chip-default-background: var(--color-accent); /** Alias: chip background. */
+  --chip-default-foreground: var(--color-accent-fg); /** Alias: chip text color. */
+  --chip-default-radius: var(--radius-lg); /** Alias: chip corner radius (pill-like). */
+  --input-default-background: var(--color-surface); /** Alias: form control background. */
+  --input-default-border: var(--color-border); /** Alias: form control border color. */
+  --input-default-foreground: var(--color-fg); /** Alias: form control text color. */
+  --input-default-radius: var(--radius-sm); /** Alias: form control corner radius. */
+}
+
+</style>
+<style>
+/* Prototype utility & component classes built entirely from design tokens. */
+
+/* Layout / spacing utilities */
+.u-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.u-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.u-gap-1 { gap: var(--space-1); }
+.u-gap-2 { gap: var(--space-2); }
+.u-gap-3 { gap: var(--space-3); }
+.u-gap-4 { gap: var(--space-4); }
+
+/* Typography utilities */
+.u-text-sm {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-base);
+}
+
+.u-text-md {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-base);
+}
+
+.u-text-lg {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-base);
+}
+
+.u-text-muted {
+  color: var(--color-fg-muted);
+}
+
+/* Base page surface */
+.u-surface {
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-family-base);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-3);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-base);
+  border-radius: var(--button-primary-radius);
+  border-width: var(--border-width-sm);
+  border-style: solid;
+  border-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-primary {
+  background-color: var(--button-primary-background);
+  color: var(--button-primary-foreground);
+  border-color: var(--button-primary-background);
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background-color: var(--button-primary-background-hover);
+  border-color: var(--button-primary-background-hover);
+}
+
+.btn-secondary {
+  background-color: var(--button-secondary-background);
+  color: var(--button-secondary-foreground);
+  border-width: var(--border-width-md);
+  border-style: solid;
+  border-color: var(--button-secondary-border);
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus-visible {
+  background-color: var(--color-bg);
+}
+
+/* Card */
+.card {
+  background-color: var(--card-default-background);
+  border-width: var(--border-width-sm);
+  border-style: solid;
+  border-color: var(--card-default-border);
+  border-radius: var(--card-default-radius);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-sm);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.card-title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-fg);
+  margin: 0 0 var(--space-2) 0;
+}
+
+.card-body {
+  font-size: var(--font-size-md);
+  color: var(--color-fg-muted);
+  margin: 0;
+}
+
+/* Chip */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1) var(--space-2);
+  background-color: var(--chip-default-background);
+  color: var(--chip-default-foreground);
+  border-radius: var(--chip-default-radius);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+}
+
+/* Form controls */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.field-label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-fg);
+}
+
+.input {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md);
+  padding: var(--space-2) var(--space-3);
+  background-color: var(--input-default-background);
+  color: var(--input-default-foreground);
+  border-width: var(--border-width-sm);
+  border-style: solid;
+  border-color: var(--input-default-border);
+  border-radius: var(--input-default-radius);
+}
+
+.input:focus-visible {
+  outline: none;
+  border-color: var(--color-primary);
+  border-width: var(--border-width-md);
+}
+
+.input::placeholder {
+  color: var(--color-fg-muted);
+}
+
+</style>
+<!-- App nav: left sidebar (collapses to a horizontal scroller under 900px) — Dashboard · Defects · Reports · Settings -->
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background-color: var(--color-bg);
+  }
+
+  /* Touch target sizing (UI guidelines §1): shared .btn's default padding falls
+     just under 44px tall; this page enforces the minimum without editing the
+     shared stylesheet. */
+  .btn { min-height: 44px; }
+
+  /* ---------- App shell ---------- */
+  .app-shell {
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+  }
+  .sidebar {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-1);
+    padding: var(--space-2);
+    background-color: var(--color-surface);
+    border-bottom: var(--border-width-sm) solid var(--color-border);
+    overflow-x: auto;
+  }
+  .sidebar-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-md);
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-fg-muted);
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .sidebar-link.active {
+    background-color: var(--color-primary);
+    color: var(--color-primary-fg);
+  }
+  @media (min-width: 900px) {
+    .app-shell { flex-direction: row; }
+    .sidebar {
+      flex-direction: column;
+      width: 220px;
+      flex: 0 0 220px;
+      border-bottom: none;
+      border-right: var(--border-width-sm) solid var(--color-border);
+      overflow-x: visible;
+    }
+  }
+
+  .content {
+    flex: 1;
+    min-width: 0;
+    padding: var(--space-3);
+  }
+  @media (min-width: 900px) {
+    .content { padding: var(--space-4); }
+  }
+  .content-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .topbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+  }
+  .breadcrumb {
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-sm);
+    color: var(--color-fg-muted);
+  }
+  .breadcrumb strong { color: var(--color-fg); }
+  .role-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-lg);
+    border: var(--border-width-sm) solid var(--color-border-strong);
+    background-color: var(--color-surface);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-fg);
+  }
+  .role-badge .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+  .role-badge.authorized .dot { background-color: var(--color-secondary); }
+  .role-badge.viewer .dot { background-color: var(--color-fg-muted); }
+
+  /* ---------- Defect summary ---------- */
+  .status-row { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: var(--space-2) 0 var(--space-3) 0; }
+  .chip-status { background-color: var(--color-secondary); color: var(--color-secondary-fg); }
+  .chip-priority { background-color: var(--color-primary); color: var(--color-primary-fg); }
+  .defect-meta-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-2);
+    padding-top: var(--space-3);
+    border-top: var(--border-width-sm) solid var(--color-border);
+  }
+  @media (min-width: 600px) {
+    .defect-meta-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  .meta-label { font-size: var(--font-size-sm); color: var(--color-fg-muted); margin: 0; }
+  .meta-value { font-size: var(--font-size-md); color: var(--color-fg); margin: 2px 0 0 0; }
+
+  /* ---------- Attachments card ---------- */
+  .attachments-card-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-2);
+    justify-content: space-between;
+  }
+  .attachments-card-header h2 {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin: 0;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-fg);
+  }
+  .count-chip { background-color: var(--color-border); color: var(--color-fg); }
+  .count-chip.at-limit { background-color: var(--color-accent); color: var(--color-accent-fg); }
+
+  .constraints-note {
+    margin: var(--space-1) 0 var(--space-3) 0;
+    font-size: var(--font-size-sm);
+    color: var(--color-fg-muted);
+  }
+
+  .upload-zone {
+    border: var(--border-width-md) dashed var(--color-border-strong);
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
+    text-align: center;
+    background-color: var(--color-bg);
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+  }
+  .upload-zone.dragover {
+    border-color: var(--color-primary);
+    background-color: var(--color-surface);
+  }
+  .upload-zone p { margin: 0 0 var(--space-2) 0; color: var(--color-fg-muted); }
+  .upload-actions { display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: center; }
+
+  .banner {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-sm);
+    margin-top: var(--space-3);
+  }
+  .banner-icon { flex: 0 0 auto; font-size: var(--font-size-md); line-height: 1; }
+  .banner-error {
+    background-color: var(--color-bg);
+    border: var(--border-width-md) solid var(--color-primary);
+    color: var(--color-fg);
+  }
+  .banner-error strong { color: var(--color-primary); }
+  .banner-success {
+    background-color: var(--color-bg);
+    border: var(--border-width-md) solid var(--color-secondary);
+    color: var(--color-fg);
+  }
+  .banner-success strong { color: var(--color-secondary); }
+  .banner-info {
+    background-color: var(--color-bg);
+    border: var(--border-width-sm) solid var(--color-border-strong);
+    color: var(--color-fg-muted);
+  }
+
+  .uploading-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-top: var(--space-3);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-sm);
+    border: var(--border-width-sm) solid var(--color-border);
+    color: var(--color-fg-muted);
+    font-size: var(--font-size-sm);
+  }
+  .spinner {
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    border: 2px solid var(--color-border);
+    border-top-color: var(--color-primary);
+    animation: spin 0.7s linear infinite;
+    flex: 0 0 auto;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) {
+    .spinner { animation: none; }
+  }
+
+  .attachment-list {
+    list-style: none;
+    margin: var(--space-3) 0 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    max-height: 420px;
+    overflow-y: auto;
+  }
+  .attachment-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-2) var(--space-3);
+    border: var(--border-width-sm) solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-surface);
+  }
+  .file-badge {
+    flex: 0 0 auto;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+  }
+  .file-badge.image { background-color: var(--color-accent); color: var(--color-accent-fg); }
+  .file-badge.pdf { background-color: var(--color-primary); color: var(--color-primary-fg); }
+  .file-badge.log { background-color: var(--color-secondary); color: var(--color-secondary-fg); }
+  .file-badge.archive { background-color: var(--color-border-strong); color: var(--color-fg); }
+
+  .attachment-info { flex: 1; min-width: 0; }
+  .attachment-name {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-fg);
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .attachment-sub {
+    font-size: var(--font-size-sm);
+    color: var(--color-fg-muted);
+    margin: 2px 0 0 0;
+  }
+
+  .icon-btn {
+    flex: 0 0 auto;
+    min-width: 44px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: var(--border-width-sm) solid transparent;
+    border-radius: var(--radius-sm);
+    color: var(--color-fg-muted);
+    font-size: var(--font-size-md);
+    cursor: pointer;
+  }
+  .icon-btn:hover, .icon-btn:focus-visible {
+    color: var(--color-primary);
+    border-color: var(--color-border);
+    background-color: var(--color-bg);
+  }
+  .icon-btn.denied {
+    color: var(--color-fg-muted);
+    cursor: not-allowed;
+  }
+  .icon-btn.denied:hover { color: var(--color-fg-muted); border-color: transparent; background: transparent; }
+
+  .empty-state {
+    text-align: center;
+    padding: var(--space-4);
+    border: var(--border-width-sm) dashed var(--color-border-strong);
+    border-radius: var(--radius-md);
+    color: var(--color-fg-muted);
+  }
+  .empty-state .empty-icon { font-size: 32px; margin-bottom: var(--space-2); }
+  .empty-state p { margin: 0 0 var(--space-3) 0; }
+
+  /* ---------- Modal ---------- */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(43, 27, 18, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-3);
+    z-index: 100;
+  }
+  .modal {
+    background-color: var(--color-surface);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    padding: var(--space-4);
+    max-width: 420px;
+    width: 100%;
+  }
+  .modal h3 { margin: 0 0 var(--space-2) 0; font-size: var(--font-size-lg); color: var(--color-fg); }
+  .modal p { margin: 0 0 var(--space-4) 0; color: var(--color-fg-muted); font-size: var(--font-size-md); }
+  .modal-actions { display: flex; justify-content: flex-end; gap: var(--space-2); flex-wrap: wrap; }
+
+  /* ---------- Toast ---------- */
+  .toast {
+    position: fixed;
+    bottom: var(--space-4);
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--color-fg);
+    color: var(--color-bg);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    box-shadow: var(--shadow-md);
+    z-index: 200;
+    max-width: 90vw;
+  }
+
+  .permission-banner {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    padding: var(--space-3);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-bg);
+    border: var(--border-width-sm) solid var(--color-border-strong);
+    color: var(--color-fg-muted);
+    font-size: var(--font-size-sm);
+  }
+
+  [hidden] { display: none !important; }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px; height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body class="u-surface">
+
+<!-- Reviewer bar -->
+<div id="review-bar" style="position:fixed;top:0;left:0;right:0;z-index:9999;
+  display:flex;align-items:center;gap:10px;padding:8px 16px;
+  background:var(--color-surface);border-bottom:1px solid var(--color-border);font-size:13px;font-family:var(--font-family-base)">
+  <span style="font-family:var(--font-family-base);font-weight:700;color:var(--color-fg-muted)">MANOJ-FIGMA-PIZZA-STORY-018</span>
+  <button id="prev-btn" style="background:none;border:none;color:var(--color-primary);font-weight:700;cursor:pointer;padding:8px;">← Prev</button>
+  <span id="screen-label" style="flex:1;text-align:center;font-weight:700;color:var(--color-fg)"></span>
+  <button id="next-btn" style="background:none;border:none;color:var(--color-primary);font-weight:700;cursor:pointer;padding:8px;">Next →</button>
+</div>
+<div style="height:46px"></div><!-- spacer -->
+
+<div id="screens">
+
+<!--
+  Screen: Defect detail — Attachments empty state
+  Notes:
+    - AC1 (accepted upload appears in list): use "Choose file" to pick any real file from
+      your machine — this prototype runs genuine client-side validation (name/size) with
+      no network calls, so picking a small JPG/PNG/PDF/LOG/TXT/ZIP under 25 MB succeeds here.
+    - Empty state is an invitation to act, not a dead end, per UI guidelines §5.
+    - Authorised role (QA Lead) — upload control is enabled.
+-->
+<div class="screen" data-name="Defect detail — Attachments (empty)">
+<!-- State: empty -->
+<div class="app-shell">
+  <nav class="sidebar" aria-label="Primary">
+    <a class="sidebar-link" href="#">Dashboard</a>
+    <a class="sidebar-link active" href="#">Defects</a>
+    <a class="sidebar-link" href="#">Reports</a>
+    <a class="sidebar-link" href="#">Settings</a>
+  </nav>
+  <main class="content">
+    <div class="content-inner">
+      <div class="topbar">
+        <p class="breadcrumb">Defects / <strong>DEF-1042</strong></p>
+        <span class="role-badge authorized"><span class="dot"></span> Priya Nandakumar · QA Lead</span>
+      </div>
+
+      <section class="card">
+        <h1 class="card-title" style="font-size: var(--font-size-lg);">Wood-fired oven temperature drift causes undercooked crust</h1>
+        <div class="status-row">
+          <span class="chip chip-status">In Progress</span>
+          <span class="chip chip-priority">High priority</span>
+        </div>
+        <p class="card-body">Evening-shift oven #2 has been running 30–40°F below setpoint, leading to pale, undercooked crusts on Margherita and Quattro Formaggi orders since Sept 12.</p>
+        <div class="defect-meta-grid">
+          <div><p class="meta-label">Reporter</p><p class="meta-value">Priya Nandakumar</p></div>
+          <div><p class="meta-label">Assignee</p><p class="meta-value">Jordan Lee</p></div>
+          <div><p class="meta-label">Created</p><p class="meta-value">Sep 12, 2026</p></div>
+        </div>
+      </section>
+
+      <section class="card" id="s1-card">
+        <div class="attachments-card-header">
+          <h2>Attachments <span class="chip count-chip" id="s1-count">0/20</span></h2>
+        </div>
+        <p class="constraints-note">Accepted: JPG, PNG, GIF, PDF, LOG, TXT, ZIP · Max size 25 MB per file · Up to 20 files per defect</p>
+
+        <div id="s1-empty" class="empty-state">
+          <div class="empty-icon">📎</div>
+          <p>No attachments yet — add oven logs, photos, or reports to support this defect.</p>
+        </div>
+
+        <div class="upload-zone" id="s1-dropzone" style="margin-top: var(--space-3);" hidden>
+          <p>Drag and drop a file here, or</p>
+          <div class="upload-actions">
+            <button class="btn btn-primary" id="s1-choose-btn" type="button">Choose file</button>
+          </div>
+          <input type="file" id="s1-file-input" class="visually-hidden" />
+        </div>
+
+        <div id="s1-error" class="banner banner-error" hidden role="alert"></div>
+        <div id="s1-uploading" class="uploading-row" hidden>
+          <span class="spinner" aria-hidden="true"></span>
+          <span id="s1-uploading-text">Uploading…</span>
+        </div>
+
+        <ul class="attachment-list" id="s1-list" hidden></ul>
+      </section>
+    </div>
+  </main>
+</div>
+
+<div class="modal-overlay" id="s1-modal-overlay" hidden>
+  <div class="modal" role="alertdialog" aria-modal="true" aria-labelledby="s1-modal-title">
+    <h3 id="s1-modal-title">Remove attachment?</h3>
+    <p id="s1-modal-body"></p>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" id="s1-modal-cancel" type="button">Cancel</button>
+      <button class="btn btn-primary" id="s1-modal-confirm" type="button">Remove</button>
+    </div>
+  </div>
+</div>
+<div class="toast" id="s1-toast" hidden></div>
+</div>
+
+<!--
+  Screen: Defect detail — Attachments populated (interactive upload + remove demo)
+  Notes:
+    - AC1: pick a real, valid file (image/pdf/log/txt/zip, under 25 MB) via "Choose file" —
+      it is validated client-side and appended to the list after a simulated ~350ms upload.
+    - AC2: pick or drag any real file over 25 MB — inline error names the file and the limit.
+    - AC3: pick a real file whose extension isn't accepted (e.g. .docx, .mp4) — inline error
+      names the file and the accepted types.
+    - AC5: "Simulate a server error (demo)" deliberately fails a valid-looking upload for a
+      reason unrelated to size/type/limit, to demonstrate the generic-failure inline error.
+    - AC6: each row's ✕ opens a confirmation dialog naming the file; confirming removes it
+      and shows a toast. Cancelling leaves the list untouched.
+    - AC7: the defect summary card above never re-renders on any attachment error — title,
+      status, priority, and description stay exactly as they were, proving the rest of the
+      defect record is unaffected by a rejected upload.
+-->
+<div class="screen" data-name="Defect detail — Attachments (populated, upload &amp; remove)">
+<!-- State: success / error / partial -->
+<div class="app-shell">
+  <nav class="sidebar" aria-label="Primary">
+    <a class="sidebar-link" href="#">Dashboard</a>
+    <a class="sidebar-link active" href="#">Defects</a>
+    <a class="sidebar-link" href="#">Reports</a>
+    <a class="sidebar-link" href="#">Settings</a>
+  </nav>
+  <main class="content">
+    <div class="content-inner">
+      <div class="topbar">
+        <p class="breadcrumb">Defects / <strong>DEF-1042</strong></p>
+        <span class="role-badge authorized"><span class="dot"></span> Priya Nandakumar · QA Lead</span>
+      </div>
+
+      <section class="card">
+        <h1 class="card-title" style="font-size: var(--font-size-lg);">Wood-fired oven temperature drift causes undercooked crust</h1>
+        <div class="status-row">
+          <span class="chip chip-status">In Progress</span>
+          <span class="chip chip-priority">High priority</span>
+        </div>
+        <p class="card-body">Evening-shift oven #2 has been running 30–40°F below setpoint, leading to pale, undercooked crusts on Margherita and Quattro Formaggi orders since Sept 12.</p>
+        <div class="defect-meta-grid">
+          <div><p class="meta-label">Reporter</p><p class="meta-value">Priya Nandakumar</p></div>
+          <div><p class="meta-label">Assignee</p><p class="meta-value">Jordan Lee</p></div>
+          <div><p class="meta-label">Created</p><p class="meta-value">Sep 12, 2026</p></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="attachments-card-header">
+          <h2>Attachments <span class="chip count-chip" id="s2-count">4/20</span></h2>
+        </div>
+        <p class="constraints-note">Accepted: JPG, PNG, GIF, PDF, LOG, TXT, ZIP · Max size 25 MB per file · Up to 20 files per defect</p>
+
+        <div class="upload-zone" id="s2-dropzone">
+          <p>Drag and drop a file here, or</p>
+          <div class="upload-actions">
+            <button class="btn btn-primary" id="s2-choose-btn" type="button">Choose file</button>
+            <button class="btn btn-secondary" id="s2-simulate-error-btn" type="button">Simulate a server error (demo)</button>
+          </div>
+          <input type="file" id="s2-file-input" class="visually-hidden" />
+        </div>
+
+        <div id="s2-error" class="banner banner-error" hidden role="alert"></div>
+        <div id="s2-success" class="banner banner-success" hidden role="status"></div>
+        <div id="s2-uploading" class="uploading-row" hidden>
+          <span class="spinner" aria-hidden="true"></span>
+          <span id="s2-uploading-text">Uploading…</span>
+        </div>
+
+        <ul class="attachment-list" id="s2-list"></ul>
+      </section>
+    </div>
+  </main>
+</div>
+
+<div class="modal-overlay" id="s2-modal-overlay" hidden>
+  <div class="modal" role="alertdialog" aria-modal="true" aria-labelledby="s2-modal-title">
+    <h3 id="s2-modal-title">Remove attachment?</h3>
+    <p id="s2-modal-body"></p>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" id="s2-modal-cancel" type="button">Cancel</button>
+      <button class="btn btn-primary" id="s2-modal-confirm" type="button">Remove</button>
+    </div>
+  </div>
+</div>
+<div class="toast" id="s2-toast" hidden></div>
+</div>
+
+<!--
+  Screen: Defect detail — Attachments at the 20-file limit
+  Notes:
+    - AC4: this defect starts pre-loaded with 20 attachments (the maximum). Any further
+      upload attempt — via "Choose file", drag-and-drop, or the drop zone itself — is
+      rejected immediately with an inline error stating the maximum has been reached,
+      before the file is even inspected for type or size.
+    - Remove is still available here, since removing frees a slot (not covered by this
+      story's ACs directly, but shown for completeness/consistency with Screen 2).
+-->
+<div class="screen" data-name="Defect detail — Attachments (at limit, 20/20)">
+<!-- State: error (limit reached) -->
+<div class="app-shell">
+  <nav class="sidebar" aria-label="Primary">
+    <a class="sidebar-link" href="#">Dashboard</a>
+    <a class="sidebar-link active" href="#">Defects</a>
+    <a class="sidebar-link" href="#">Reports</a>
+    <a class="sidebar-link" href="#">Settings</a>
+  </nav>
+  <main class="content">
+    <div class="content-inner">
+      <div class="topbar">
+        <p class="breadcrumb">Defects / <strong>DEF-1042</strong></p>
+        <span class="role-badge authorized"><span class="dot"></span> Priya Nandakumar · QA Lead</span>
+      </div>
+
+      <section class="card">
+        <h1 class="card-title" style="font-size: var(--font-size-lg);">Wood-fired oven temperature drift causes undercooked crust</h1>
+        <div class="status-row">
+          <span class="chip chip-status">In Progress</span>
+          <span class="chip chip-priority">High priority</span>
+        </div>
+        <p class="card-body">Evening-shift oven #2 has been running 30–40°F below setpoint, leading to pale, undercooked crusts on Margherita and Quattro Formaggi orders since Sept 12.</p>
+        <div class="defect-meta-grid">
+          <div><p class="meta-label">Reporter</p><p class="meta-value">Priya Nandakumar</p></div>
+          <div><p class="meta-label">Assignee</p><p class="meta-value">Jordan Lee</p></div>
+          <div><p class="meta-label">Created</p><p class="meta-value">Sep 12, 2026</p></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="attachments-card-header">
+          <h2>Attachments <span class="chip count-chip at-limit" id="s3-count">20/20</span></h2>
+        </div>
+        <p class="constraints-note">Accepted: JPG, PNG, GIF, PDF, LOG, TXT, ZIP · Max size 25 MB per file · Up to 20 files per defect</p>
+
+        <div class="banner banner-info" style="margin-top:0; margin-bottom: var(--space-3);">
+          <span class="banner-icon" aria-hidden="true">ℹ</span>
+          <span>This defect has reached the maximum of 20 attachments. Remove one to add another.</span>
+        </div>
+
+        <div class="upload-zone" id="s3-dropzone">
+          <p>Drag and drop a file here, or</p>
+          <div class="upload-actions">
+            <button class="btn btn-primary" id="s3-choose-btn" type="button">Choose file</button>
+          </div>
+          <input type="file" id="s3-file-input" class="visually-hidden" />
+        </div>
+
+        <div id="s3-error" class="banner banner-error" hidden role="alert"></div>
+        <div id="s3-success" class="banner banner-success" hidden role="status"></div>
+
+        <ul class="attachment-list" id="s3-list"></ul>
+      </section>
+    </div>
+  </main>
+</div>
+
+<div class="modal-overlay" id="s3-modal-overlay" hidden>
+  <div class="modal" role="alertdialog" aria-modal="true" aria-labelledby="s3-modal-title">
+    <h3 id="s3-modal-title">Remove attachment?</h3>
+    <p id="s3-modal-body"></p>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" id="s3-modal-cancel" type="button">Cancel</button>
+      <button class="btn btn-primary" id="s3-modal-confirm" type="button">Remove</button>
+    </div>
+  </div>
+</div>
+<div class="toast" id="s3-toast" hidden></div>
+</div>
+
+<!--
+  Screen: Defect detail — Attachments, unauthorised viewer
+  Notes:
+    - AC8: signed in as a Viewer without attachment-management permission. The attachments
+      list is still visible (read access), but "Choose file", the drop zone, and every
+      row's remove control are click-reachable (for keyboard/tap parity) yet always deny
+      the action with an inline permission banner instead of performing it — nothing is
+      ever uploaded or removed from this screen.
+-->
+<div class="screen" data-name="Defect detail — Attachments (unauthorised viewer)">
+<!-- State: error (permission denied) -->
+<div class="app-shell">
+  <nav class="sidebar" aria-label="Primary">
+    <a class="sidebar-link" href="#">Dashboard</a>
+    <a class="sidebar-link active" href="#">Defects</a>
+    <a class="sidebar-link" href="#">Reports</a>
+    <a class="sidebar-link" href="#">Settings</a>
+  </nav>
+  <main class="content">
+    <div class="content-inner">
+      <div class="topbar">
+        <p class="breadcrumb">Defects / <strong>DEF-1042</strong></p>
+        <span class="role-badge viewer"><span class="dot"></span> Alex Rivera · Viewer</span>
+      </div>
+
+      <section class="card">
+        <h1 class="card-title" style="font-size: var(--font-size-lg);">Wood-fired oven temperature drift causes undercooked crust</h1>
+        <div class="status-row">
+          <span class="chip chip-status">In Progress</span>
+          <span class="chip chip-priority">High priority</span>
+        </div>
+        <p class="card-body">Evening-shift oven #2 has been running 30–40°F below setpoint, leading to pale, undercooked crusts on Margherita and Quattro Formaggi orders since Sept 12.</p>
+        <div class="defect-meta-grid">
+          <div><p class="meta-label">Reporter</p><p class="meta-value">Priya Nandakumar</p></div>
+          <div><p class="meta-label">Assignee</p><p class="meta-value">Jordan Lee</p></div>
+          <div><p class="meta-label">Created</p><p class="meta-value">Sep 12, 2026</p></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="attachments-card-header">
+          <h2>Attachments <span class="chip count-chip" id="s4-count">4/20</span></h2>
+        </div>
+        <p class="constraints-note">Accepted: JPG, PNG, GIF, PDF, LOG, TXT, ZIP · Max size 25 MB per file · Up to 20 files per defect</p>
+
+        <div class="permission-banner">
+          <span class="banner-icon" aria-hidden="true">🔒</span>
+          <span>Your role (Viewer) can view attachments but can't upload or remove them. Ask a QA lead or the defect owner for access.</span>
+        </div>
+
+        <div class="upload-zone" id="s4-dropzone" style="margin-top: var(--space-3); opacity: 0.7;">
+          <p>Drag and drop a file here, or</p>
+          <div class="upload-actions">
+            <button class="btn btn-primary" id="s4-choose-btn" type="button">Choose file</button>
+          </div>
+          <input type="file" id="s4-file-input" class="visually-hidden" />
+        </div>
+
+        <div id="s4-error" class="banner banner-error" hidden role="alert"></div>
+
+        <ul class="attachment-list" id="s4-list"></ul>
+      </section>
+    </div>
+  </main>
+</div>
+<div class="toast" id="s4-toast" hidden></div>
+</div>
+
+</div>
+
+<script>
+/* ---------- Reviewer bar ---------- */
+const screens = Array.from(document.querySelectorAll('.screen'));
+let cur = 0;
+function show(i) {
+  cur = Math.max(0, Math.min(screens.length - 1, i));
+  screens.forEach((s, j) => s.style.display = j === cur ? 'block' : 'none');
+  document.getElementById('screen-label').textContent =
+    `${cur + 1} / ${screens.length}: ${screens[cur].dataset.name}`;
+}
+document.getElementById('prev-btn').onclick = () => show(cur - 1);
+document.getElementById('next-btn').onclick = () => show(cur + 1);
+document.addEventListener('keydown', e => {
+  if (e.target && (e.target.tagName === 'INPUT')) return;
+  if (e.key === 'ArrowRight') show(cur + 1);
+  if (e.key === 'ArrowLeft') show(cur - 1);
+});
+show(0);
+
+/* ---------- Shared fixture / validation logic ---------- */
+const ACCEPTED_EXT = ['jpg', 'jpeg', 'png', 'gif', 'pdf', 'log', 'txt', 'zip'];
+const MAX_SIZE_BYTES = 25 * 1024 * 1024;
+const MAX_COUNT = 20;
+
+function getExt(filename) {
+  const parts = filename.split('.');
+  return parts.length > 1 ? parts.pop().toLowerCase() : '';
+}
+function badgeClassForExt(ext) {
+  if (['jpg', 'jpeg', 'png', 'gif'].includes(ext)) return 'image';
+  if (ext === 'pdf') return 'pdf';
+  if (['log', 'txt'].includes(ext)) return 'log';
+  if (ext === 'zip') return 'archive';
+  return 'archive';
+}
+function formatSize(bytes) {
+  const mb = bytes / (1024 * 1024);
+  if (mb >= 1) return mb.toFixed(1) + ' MB';
+  return Math.max(1, Math.round(bytes / 1024)) + ' KB';
+}
+function formatNow() {
+  return 'Sep 18, 2026 · just now';
+}
+let nextId = 1000;
+
+/* ---------- Reusable interactive attachment panel ---------- */
+function initAttachmentScreen(prefix, initialAttachments, opts) {
+  opts = opts || {};
+  const state = { attachments: initialAttachments.slice() };
+  const listEl = document.getElementById(prefix + '-list');
+  const countEl = document.getElementById(prefix + '-count');
+  const errorEl = document.getElementById(prefix + '-error');
+  const successEl = document.getElementById(prefix + '-success');
+  const uploadingEl = document.getElementById(prefix + '-uploading');
+  const emptyEl = document.getElementById(prefix + '-empty');
+  const dropzoneEl = document.getElementById(prefix + '-dropzone');
+  const fileInput = document.getElementById(prefix + '-file-input');
+  const chooseBtn = document.getElementById(prefix + '-choose-btn');
+  const simulateErrorBtn = document.getElementById(prefix + '-simulate-error-btn');
+  const toastEl = document.getElementById(prefix + '-toast');
+  const modalOverlay = document.getElementById(prefix + '-modal-overlay');
+  const modalBody = document.getElementById(prefix + '-modal-body');
+  const modalCancel = document.getElementById(prefix + '-modal-cancel');
+  const modalConfirm = document.getElementById(prefix + '-modal-confirm');
+
+  let pendingRemoveId = null;
+
+  function showToast(message) {
+    if (!toastEl) return;
+    toastEl.textContent = message;
+    toastEl.hidden = false;
+    clearTimeout(toastEl._t);
+    toastEl._t = setTimeout(() => { toastEl.hidden = true; }, 2500);
+  }
+
+  function clearBanners() {
+    if (errorEl) { errorEl.hidden = true; errorEl.innerHTML = ''; }
+    if (successEl) { successEl.hidden = true; successEl.innerHTML = ''; }
+  }
+
+  function showError(message) {
+    clearBanners();
+    if (!errorEl) return;
+    errorEl.hidden = false;
+    errorEl.innerHTML = '<span class="banner-icon" aria-hidden="true">⚠</span><span><strong>Upload failed.</strong> ' + message + '</span>';
+  }
+
+  function showSuccess(message) {
+    clearBanners();
+    if (!successEl) return;
+    successEl.hidden = false;
+    successEl.innerHTML = '<span class="banner-icon" aria-hidden="true">✓</span><span>' + message + '</span>';
+  }
+
+  function render() {
+    if (countEl) {
+      countEl.textContent = state.attachments.length + '/' + MAX_COUNT;
+      countEl.classList.toggle('at-limit', state.attachments.length >= MAX_COUNT);
+    }
+    if (emptyEl) {
+      emptyEl.hidden = state.attachments.length !== 0;
+    }
+    if (dropzoneEl) {
+      dropzoneEl.hidden = false;
+    }
+    if (listEl) {
+      listEl.hidden = state.attachments.length === 0;
+      listEl.innerHTML = '';
+      state.attachments.forEach(att => {
+        const li = document.createElement('li');
+        li.className = 'attachment-row';
+        const ext = getExt(att.name);
+        const removeBtn = opts.readOnly
+          ? '<button class="icon-btn denied" type="button" data-id="' + att.id + '" aria-label="Remove ' + att.name + ' (requires permission)">✕</button>'
+          : '<button class="icon-btn" type="button" data-id="' + att.id + '" aria-label="Remove ' + att.name + '">✕</button>';
+        li.innerHTML =
+          '<div class="file-badge ' + badgeClassForExt(ext) + '">' + ext.slice(0, 4).toUpperCase() + '</div>' +
+          '<div class="attachment-info">' +
+            '<p class="attachment-name">' + att.name + '</p>' +
+            '<p class="attachment-sub">' + att.size + ' · uploaded by ' + att.uploadedBy + ' · ' + att.uploadedAt + '</p>' +
+          '</div>' +
+          removeBtn;
+        listEl.appendChild(li);
+      });
+      listEl.querySelectorAll('.icon-btn').forEach(btn => {
+        btn.addEventListener('click', () => onRemoveClick(btn.dataset.id));
+      });
+    }
+  }
+
+  function onRemoveClick(id) {
+    const att = state.attachments.find(a => String(a.id) === String(id));
+    if (!att) return;
+    if (opts.readOnly) {
+      showError("You don't have permission to remove attachments on this defect. Ask a QA lead or the defect owner.");
+      return;
+    }
+    pendingRemoveId = id;
+    modalBody.textContent = 'This will permanently remove "' + att.name + '" from DEF-1042. This can\'t be undone.';
+    modalOverlay.hidden = false;
+    modalCancel.focus();
+  }
+
+  if (modalCancel) {
+    modalCancel.addEventListener('click', () => { modalOverlay.hidden = true; pendingRemoveId = null; });
+  }
+  if (modalConfirm) {
+    modalConfirm.addEventListener('click', () => {
+      const att = state.attachments.find(a => String(a.id) === String(pendingRemoveId));
+      state.attachments = state.attachments.filter(a => String(a.id) !== String(pendingRemoveId));
+      modalOverlay.hidden = true;
+      render();
+      if (att) showToast('Attachment removed — "' + att.name + '" is no longer listed on this defect.');
+      pendingRemoveId = null;
+    });
+  }
+  if (modalOverlay) {
+    modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) { modalOverlay.hidden = true; pendingRemoveId = null; } });
+  }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modalOverlay && !modalOverlay.hidden) { modalOverlay.hidden = true; pendingRemoveId = null; }
+  });
+
+  function handleFile(file) {
+    if (!file) return;
+    clearBanners();
+
+    if (opts.readOnly) {
+      showError("You don't have permission to upload attachments on this defect. Ask a QA lead or the defect owner.");
+      fileInput.value = '';
+      return;
+    }
+
+    if (state.attachments.length >= MAX_COUNT) {
+      showError('This defect already has the maximum of 20 attachments. Remove one before adding another.');
+      fileInput.value = '';
+      return;
+    }
+
+    if (file.size > MAX_SIZE_BYTES) {
+      showError('"' + file.name + '" is ' + formatSize(file.size) + ', which is over the 25 MB limit. Choose a smaller file.');
+      fileInput.value = '';
+      return;
+    }
+
+    const ext = getExt(file.name);
+    if (!ACCEPTED_EXT.includes(ext)) {
+      showError('"' + file.name + '" is a .' + (ext || 'unknown') + ' file, which isn\'t a supported type. Upload an image, PDF, log, or archive file instead.');
+      fileInput.value = '';
+      return;
+    }
+
+    uploadingEl.hidden = false;
+    document.getElementById(prefix + '-uploading-text').textContent = 'Uploading "' + file.name + '"…';
+    if (chooseBtn) chooseBtn.disabled = true;
+
+    setTimeout(() => {
+      uploadingEl.hidden = true;
+      if (chooseBtn) chooseBtn.disabled = false;
+      state.attachments.push({
+        id: nextId++,
+        name: file.name,
+        size: formatSize(file.size),
+        uploadedBy: 'Priya Nandakumar',
+        uploadedAt: formatNow(),
+      });
+      render();
+      showSuccess('"' + file.name + '" was uploaded and added to the attachments list.');
+      fileInput.value = '';
+    }, 350);
+  }
+
+  if (chooseBtn && fileInput) {
+    chooseBtn.addEventListener('click', () => fileInput.click());
+    fileInput.addEventListener('change', (e) => handleFile(e.target.files[0]));
+  }
+
+  if (dropzoneEl) {
+    dropzoneEl.addEventListener('dragover', (e) => { e.preventDefault(); dropzoneEl.classList.add('dragover'); });
+    dropzoneEl.addEventListener('dragleave', () => dropzoneEl.classList.remove('dragover'));
+    dropzoneEl.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropzoneEl.classList.remove('dragover');
+      if (e.dataTransfer.files && e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
+    });
+  }
+
+  if (simulateErrorBtn) {
+    simulateErrorBtn.addEventListener('click', () => {
+      clearBanners();
+      uploadingEl.hidden = false;
+      document.getElementById(prefix + '-uploading-text').textContent = 'Uploading "oven-diagnostics-full.zip"…';
+      setTimeout(() => {
+        uploadingEl.hidden = true;
+        showError('The upload service is temporarily unavailable. "oven-diagnostics-full.zip" was not saved — try again in a moment.');
+      }, 500);
+    });
+  }
+
+  render();
+}
+
+/* ---------- Fixture data ---------- */
+const screen2Attachments = [
+  { id: 1, name: 'oven-temp-log-sept14.log', size: '1.2 MB', uploadedBy: 'Priya Nandakumar', uploadedAt: 'Sep 14, 2026 · 08:12' },
+  { id: 2, name: 'undercooked-crust-photo1.jpg', size: '3.4 MB', uploadedBy: 'Jordan Lee', uploadedAt: 'Sep 14, 2026 · 09:03' },
+  { id: 3, name: 'undercooked-crust-photo2.png', size: '2.1 MB', uploadedBy: 'Jordan Lee', uploadedAt: 'Sep 14, 2026 · 09:04' },
+  { id: 4, name: 'thermal-calibration-report.pdf', size: '4.8 MB', uploadedBy: 'Priya Nandakumar', uploadedAt: 'Sep 15, 2026 · 14:20' },
+];
+
+function buildLimitFixture() {
+  const namePatterns = [
+    n => 'oven-batch-' + n + '-photo.jpg',
+    n => 'shift-log-' + n + '.log',
+    n => 'qa-report-' + n + '.pdf',
+    n => 'oven-diagnostics-' + n + '.zip',
+  ];
+  const uploaders = ['Priya Nandakumar', 'Jordan Lee', 'Sam Okafor'];
+  const list = [];
+  for (let n = 1; n <= 20; n++) {
+    const name = namePatterns[n % namePatterns.length](n);
+    list.push({
+      id: n,
+      name,
+      size: (1 + (n % 8) * 1.3).toFixed(1) + ' MB',
+      uploadedBy: uploaders[n % uploaders.length],
+      uploadedAt: 'Sep ' + (10 + (n % 6)) + ', 2026 · ' + (8 + (n % 9)) + ':0' + (n % 6) + '0',
+    });
+  }
+  return list;
+}
+
+/* ---------- Wire up screens ---------- */
+initAttachmentScreen('s1', [], {});
+initAttachmentScreen('s2', screen2Attachments, {});
+initAttachmentScreen('s3', buildLimitFixture(), {});
+initAttachmentScreen('s4', screen2Attachments, { readOnly: true });
+</script>
+
+</body>
+</html>
+
+<!-- arc:css-inlined -->
