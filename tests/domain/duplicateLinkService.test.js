@@ -5,6 +5,7 @@ const {
   linkAsDuplicate,
   UnauthorizedError,
   NotFoundError,
+  InvalidLinkError,
 } = require('../../src/domain/duplicateLinkService');
 
 let repo;
@@ -94,4 +95,18 @@ test('rejects linking when the canonical defect does not exist', () => {
       ),
     NotFoundError
   );
+});
+
+test('rejects linking a defect as a duplicate of itself', () => {
+  const triager = { id: 'u1', role: 'TRIAGER' };
+
+  assert.throws(
+    () =>
+      linkAsDuplicate(
+        { actingUser: triager, duplicateDefectId: 'dup-1', canonicalDefectId: 'dup-1' },
+        repo
+      ),
+    InvalidLinkError
+  );
+  assert.equal(repo.get('dup-1')?.duplicateOfId, null);
 });

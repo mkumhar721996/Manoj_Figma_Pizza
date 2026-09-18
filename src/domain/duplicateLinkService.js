@@ -16,9 +16,20 @@ class NotFoundError extends DuplicateLinkError {
   }
 }
 
+class InvalidLinkError extends DuplicateLinkError {
+  constructor(defectId) {
+    super(`Defect cannot be linked as a duplicate of itself: ${defectId}`);
+    this.name = 'InvalidLinkError';
+  }
+}
+
 function linkAsDuplicate({ actingUser, duplicateDefectId, canonicalDefectId }, repo) {
   if (!canLinkDuplicate(actingUser)) {
     throw new UnauthorizedError();
+  }
+
+  if (duplicateDefectId === canonicalDefectId) {
+    throw new InvalidLinkError(duplicateDefectId);
   }
 
   const duplicateDefect = repo.get(duplicateDefectId);
@@ -34,4 +45,10 @@ function linkAsDuplicate({ actingUser, duplicateDefectId, canonicalDefectId }, r
   return repo.update(duplicateDefectId, { duplicateOfId: canonicalDefectId });
 }
 
-module.exports = { linkAsDuplicate, DuplicateLinkError, UnauthorizedError, NotFoundError };
+module.exports = {
+  linkAsDuplicate,
+  DuplicateLinkError,
+  UnauthorizedError,
+  NotFoundError,
+  InvalidLinkError,
+};

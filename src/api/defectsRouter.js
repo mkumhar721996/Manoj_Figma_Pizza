@@ -1,5 +1,10 @@
 const { attachUser } = require('./authMiddleware');
-const { linkAsDuplicate, UnauthorizedError, NotFoundError } = require('../domain/duplicateLinkService');
+const {
+  linkAsDuplicate,
+  UnauthorizedError,
+  NotFoundError,
+  InvalidLinkError,
+} = require('../domain/duplicateLinkService');
 
 function serializeDefect(defect, repo) {
   return {
@@ -79,6 +84,10 @@ async function handleDefectsRequest(req, res, repo) {
       }
       if (err instanceof NotFoundError) {
         sendJson(res, 404, { error: err.message });
+        return;
+      }
+      if (err instanceof InvalidLinkError) {
+        sendJson(res, 400, { error: err.message });
         return;
       }
       throw err;
